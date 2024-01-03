@@ -1,0 +1,29 @@
+/*
+Theme Name: krikate.by
+Version: 1.0
+Requires at least: 5.2
+Tested up to: 7.4
+Requires PHP: 7.4
+License: GNU General Public License v3 or Later
+License URI: https://www.gnu.org/licenses/gpl.html
+Text Domain: krikate
+
+krikate WordPress Theme ©2023 New Trait
+*/
+
+.checkout__radio.c-radio.wc_payment_method.payment_method_begateway_erip img {
+    display: none;
+}
+@media (min-width: 1600px) {}
+
+@media (max-width: 1600px) and (min-width: 1040px) {}
+
+@media (min-width: 1040px) {}
+
+@media (max-width: 1040px) {}
+
+@media (max-width: 1040px) and (min-width: 700px) {}
+
+@media (max-width: 900px) {}
+
+@media (max-width: 700px) {}

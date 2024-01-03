@@ -1,0 +1,66 @@
+@keyframes shake {
+	10%,
+	90% {
+		transform: translate3d(-1px, 0, 0);
+	}
+	20%,
+	80% {
+		transform: translate3d(2px, 0, 0);
+	}
+
+	30%,
+	50%,
+	70% {
+		transform: translate3d(-2px, 0, 0);
+	}
+	40%,
+	60% {
+		transform: translate3d(2px, 0, 0);
+	}
+}
+
+@keyframes zoom-in-zoom-out {
+	0% {
+		transform: scale(1, 1);
+	}
+	50% {
+		transform: scale(1.2, 1.2);
+	}
+	100% {
+		transform: scale(1, 1);
+	}
+}
+
+@keyframes slide-progress {
+	0% {
+		transform: translateX(-100%);
+		// width: 0;
+	}
+
+	100% {
+		transform: translateX(0);
+		// width: 100%;
+	}
+}
+
+@keyframes slide-in-nav-item {
+	from {
+		-webkit-transform: translateY(-200%);
+		transform: translateY(-200%);
+	}
+	to {
+		-webkit-transform: translateY(0);
+		transform: translateY(0);
+	}
+}
+
+@keyframes slide-in-nav-item-reverse {
+	from {
+		-webkit-transform: translateY(0);
+		transform: translateY(0);
+	}
+	to {
+		-webkit-transform: translateY(-200%);
+		transform: translateY(-200%);
+	}
+}
