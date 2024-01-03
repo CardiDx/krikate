@@ -1,5 +1,6 @@
 wp-content/plugins/*
 wp-content/uploads/*
+wp-content/.litespeed_conf.dat
 wp-content/ewww
 
 node_modules
@@ -8,8 +9,8 @@ node_modules
 *.sql
 *.sqlite
 
-.litespeed_conf.dat
-installer.php
+
+
 
 # ignore packaged files
 *.7z
