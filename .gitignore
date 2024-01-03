@@ -1,0 +1,9 @@
+wp-content/plugins/*
+wp-content/uploads/*
+node_modules
+*.log
+.idea/
+.vscode/
+TEST*.xml
+.DS_Store
+Thumbs.db
