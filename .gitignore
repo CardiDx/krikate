@@ -1,5 +1,6 @@
 wp-content/plugins/*
 wp-content/uploads/*
+wp-content/eww
 node_modules
 *.log
 .idea/
