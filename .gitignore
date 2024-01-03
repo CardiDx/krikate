@@ -2,6 +2,7 @@ wp-content/plugins/*
 wp-content/uploads/*
 wp-content/.litespeed_conf.dat
 wp-content/ewww
+wp-content/litespeed
 
 node_modules
 # ignore log files and databases
