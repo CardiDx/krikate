@@ -1,6 +1,6 @@
 wp-content/plugins/*
 wp-content/uploads/*
-wp-content/eww
+wp-content/ewww
 node_modules
 *.log
 .idea/
