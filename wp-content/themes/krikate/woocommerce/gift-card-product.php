@@ -5,7 +5,6 @@ $product_sku = $product->get_sku();
 
 <main>
     <section class="product section-offset">
-        <h1>hello there</h1>
         <?php include('content-gift-card-product.php'); ?>
 
         

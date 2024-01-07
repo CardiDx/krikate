@@ -61,10 +61,14 @@ if (!$checkout->is_registration_enabled() && $checkout->is_registration_required
 				Сумма заказа
 				<span class="basket-total__item_full-price"> 0 BYN</span>
 			</div>
-			<div class="basket-total__item">
+			
+			<!-- <div class="basket-total__item">
 				Скидка
 				<span class="basket-total__item_sale-price">— 0 BYN</span>
-			</div>
+			</div> -->
+
+			<?php do_action( 'woocommerce_review_order_before_order_total' ); ?>
+
 			<div class="basket-total__item">
 				Стоимость доставки
 				<span class="basket-total__item_delivery-price">0 BYN</span>
