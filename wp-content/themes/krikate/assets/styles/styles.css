@@ -1338,6 +1338,21 @@ main {
     transition: 0.25s ease-in-out;
 } */
 
+.header__cart-dropdown.cart {
+    z-index: -1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100dvh;
+    display: flex;
+    justify-content: flex-end;
+    visibility: hidden;
+    opacity: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    transition: 0.25s ease-in-out;
+}
+
 .cart--active {
     z-index: 8;
     visibility: visible;
