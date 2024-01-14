@@ -5480,6 +5480,147 @@ span.select2-selection.select2-selection--single {
     display: none !important;
 }
 
-#pwgc-balance-amount-value{
+#pwgc-balance-amount-value {
     font-size: 20px;
+}
+
+/* Product gift card */
+label.pwgc-label,
+.woocommerce div.product form.cart .variations label {
+    font-weight: 400 !important;
+    margin-bottom: 10px;
+    color: #818181;
+    display: inline-block;
+}
+
+#pwgc-email-preview-button {
+    display: none;
+}
+
+input.pwgc-input-text {
+    height: 53px;
+    font-family: inherit;
+    font-size: 100%;
+    line-height: 1.15;
+    outline: none;
+    border-radius: 0;
+    width: 100%;
+    padding: 14px 18px;
+    color: #1d1d1b;
+    background-color: #ffffff;
+    border: 1px solid #E5E5E5;
+    /* margin: 0 16px 0 0; */
+}
+
+input.pwgc-input-text:focus {
+    border: 1px solid #1d1d1b;
+}
+
+div.pwgc-subtitle {
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+button.single_add_to_cart_button.button.alt {
+    width: 100%;
+    padding: 13px 32px;
+    text-align: center;
+    color: #ffffff;
+    background-color: #d71379;
+    transition: background-color 0.25s ease-in-out, color 0.25s ease-in-out;
+    border: none;
+    outline: none;
+    height: 53px;
+    cursor: pointer;
+    border-radius: 0;
+    font-weight: 400;
+}
+
+button.single_add_to_cart_button.button.alt:hover {
+    color: #1d1d1b;
+    background-color: #ffaad7;
+}
+
+.single_add_to_cart_button.button.alt.disabled.wc-variation-selection-needed,
+.single_add_to_cart_button.button.alt.disabled.wc-variation-selection-needed:hover {
+    background-color: #d71378;
+    opacity: .5;
+}
+
+div.pwgc-field-container {
+    margin-bottom: 15px;
+}
+
+.woocommerce div.product p.price, .woocommerce div.product span.price {
+    color: #1d1d1b;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.woocommerce div.product form.cart .variations {
+    margin-top: 38px;
+    width: 100%;
+}
+
+.woocommerce div.product form.cart .variations tbody tr {
+    display: flex;
+    flex-direction: column;
+}
+
+.woocommerce div.product form.cart .variations td,
+.woocommerce div.product form.cart .variations th {
+    line-height: 120%;
+    text-align: left;
+}
+
+.woocommerce div.product form.cart div.quantity {
+    display: none !important;
+}
+
+#pwgc-email-preview-container {
+    display: none !important;
+}
+
+.single_add_to_cart_button.button.alt.disabled.wc-variation-selection-needed {
+    width: 100%;
+    font-family: inherit;
+    font-size: 100%;
+    line-height: 1.15;
+    font-weight: 400;
+    border-radius: 0;
+}
+
+.woocommerce div.product form.cart .variations select {
+    height: 53px;
+    font-family: inherit;
+    font-size: 100%;
+    line-height: 1.15;
+    outline: none;
+    border-radius: 0;
+    width: 100%;
+    padding: 14px 18px;
+    color: #1d1d1b;
+    background-color: #ffffff;
+    border: 1px solid #E5E5E5;
+    margin-right: 0;
+}
+
+#gift-card-amount option:last-child {
+    display: none;
+}
+
+.is-selected .pika-button, .has-event .pika-button {
+    background: #d71378;
+    box-shadow: inset 0 1px 3px #d71378;
+}
+
+.reset_variations {
+    display: none !important;
+}
+
+#pwgc-form-message #pwgc-message {
+    width: 100%;
+    border: 1px solid #E5E5E5;
+    outline: none;
+    padding: 14px 18px;
 }
