@@ -5,14 +5,14 @@ $product_sku = $product->get_sku();
 
 <main>
     <section class="product section-offset">
-        <?php include('content-gift-card-product.php'); ?>
-
-        
+        <?php include('content-gift-card-product.php'); ?>        
         <?php //wc_get_template_part( 'content', 'single-product' ); ?>
         <?php //include('single-product/add-to-cart/pw-gift-card-before-add-to-cart-quantity.php'); ?>
         <?php //do_action( 'pw-gift-card-before-add-to-cart-quantity' ); ?>
     </section>
 
+    <?php // Это было что-то вроде "похожих товаров". В данном товаре не нужны, но если будет несколько видов карт, то может пригодиться ?>
+    <?php /* ?>
     <section class="collection section-offset">
         <div class="collection__container container">
             <h2 class="collection__title">Дополните образ</h2>
@@ -77,6 +77,7 @@ $product_sku = $product->get_sku();
 
         </div>
     </section>
+    <?php */ ?>
 
     <? get_template_part('elements/element-instagram'); ?>
 

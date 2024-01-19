@@ -114,6 +114,9 @@ if ($product->is_type('variable')) {
                 }
                 $color_index++;
             }
+            if($product->slug == 'podarochnaja-karta'){
+                echo '<button id="belyj" style="color: #ffffff;" class="product-card__colors-item product-card__colors-item--selected btn-reset" data-color-name="Белый"></button>';
+            }
             ?>
 
         </div>
