@@ -49,15 +49,21 @@ if ( post_password_required() ) {
 
 				<div class="product__gallery">
 					<div class="gallery-slider swiper swiper-initialized swiper-horizontal swiper-backface-hidden">
-						<div class="gallery-slider__wrapper swiper-wrapper" style="    justify-content: center;">
-							
-							<div class="gallery-slider__item swiper-slide">
-								<?php $image = wp_get_attachment_image_src( get_post_thumbnail_id( $product->id ), 'single-post-thumbnail' );?>                                    
-								<a href="<?= $image[0]; ?>" class="glightbox nofancybox">
-									<img src="<?= $image[0]; ?>">
-								</a>
-							</div>
+						<div class="gallery-slider__wrapper gallery-slider__wrapper--gitf-card swiper-wrapper" style="    justify-content: center;">
+							<?php 
+							$image = wp_get_attachment_image_src( get_post_thumbnail_id( $product->id ), 'single-post-thumbnail' );
+							$attachment_ids = $product->get_gallery_image_ids();
+							foreach($attachment_ids as $attachment_id) {
+							?>
 
+								<div class="gallery-slider__item swiper-slide">
+									<?php $image = wp_get_attachment_image_src( get_post_thumbnail_id( $product->id ), 'single-post-thumbnail' );?>                                    
+									<a href="<?= wp_get_attachment_image_url($attachment_id, 'Full'); ?>" class="glightbox nofancybox">
+										<img width="1280" height="1920" src="<?= wp_get_attachment_image_url($attachment_id, 'Full'); ?>">
+									</a>
+								</div>
+								
+							<?php } ?>
 						</div>
 					</div>
                 </div>
