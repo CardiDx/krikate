@@ -4921,6 +4921,10 @@ main {
     }
 }
 
+.gallery-slider__wrapper.gallery-slider__wrapper--gitf-card {
+    justify-content: flex-start !important;
+}
+
 .gallery-slider__item a:hover {
     cursor: url("/wp-content/themes/krikate/assets/img/plus_cursor.svg"), auto;
 }
