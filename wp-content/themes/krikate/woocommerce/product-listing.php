@@ -68,8 +68,120 @@ function product_listing($category, $filter_sort, $filter_price)
         echo '<ul class="catalog__list list-reset">';
         while ($query->have_posts()) {
             $query->the_post();
-            wc_get_template_part('content', 'product');
+
+            $product_id = get_the_ID();
+            $product = wc_get_product($product_id);
+            
+            if ($product->is_type('variable')) {
+                $variations = $product->get_available_variations();
+                $product_info = product_info(get_the_ID());
+                $product_color = $product_info['nt_color'];
+                
+                // echo '<pre>';
+                // print_r($product_color);
+                // echo '</pre>';
+                
+                $color_index = 0;
+                
+                foreach ($product_color as $color) {
+                    $term = get_term_by('slug', $color, 'pa_color');
+                    // echo '<pre>';
+                    // print_r($term);
+                    // echo '</pre>';
+
+                    // if ($term && !is_wp_error($term)) {
+                    //     $color_code = get_term_meta($term->term_id, 'color_code', true);
+                    //     $color_name = $term->name;
+                    //     if (empty($color_code)) {
+                    //         $color_code = '#1D1D1B';
+                    //     }
+                    // }
+                    // if ($color_index == 0) {
+                    //     echo '<button id="' . $color . '" style="color: ' . $color_code . ';" class="product-card__colors-item product-card__colors-item--selected btn-reset" data-color-name="' . $color_name . '"></button>';
+                    // } else {
+                    //     echo '<button id="' . $color . '" style="color: ' . $color_code . ';" class="product-card__colors-item btn-reset" data-color-name="' . $color_name . '"></button>';
+                    // }
+                    $color_index++;
+                }
+                // if($product->slug == 'podarochnaja-karta'){
+                //     echo '<button id="belyj" style="color: #ffffff;" class="product-card__colors-item product-card__colors-item--selected btn-reset" data-color-name="Белый"></button>';
+                // }
+            }
+
+            // storage for printed colors
+            $usedColors = array();
+
+            foreach ( $product->get_available_variations() as $key => $variation ) {
+                // echo '<pre>';
+                // print_r($variation);
+                // print_r($variation['variation_id']);
+                // print_r($variation['image']['url']);
+                // print_r($variation['attributes']['attribute_pa_color']);
+                // echo '</pre>';
+
+                $variationColor = $variation['attributes']['attribute_pa_color'];
+                
+                if (in_array($variationColor, $usedColors)) {
+                    // we already printed variation with this color
+                    continue;
+                } else {
+                    // we need to print wariation with this color
+                    // woocommerce_get_template( 'content-product.php' );
+                    woocommerce_get_template( 'content-product.php', array('variationID' => $variation['variation_id']) );
+                    array_push($usedColors, $variationColor);
+                }
+                
+                // echo '<pre>';
+                // print_r($usedColors);
+                // echo '</pre>';
+            }
+
+            // wc_get_template_part('content', 'product');
         }
+        
+        // echo '<pre>';
+        // print_r($query->posts);
+        // echo '</pre>';
+
+
+        // foreach ( $query->posts as $post ) {
+        //     // echo '<pre>';
+        //     // print_r($post);
+        //     // echo '</pre>';
+            
+        //     $product = wc_get_product($post->ID);
+        //     $current_products = $product->get_children();
+        //     // echo '<pre>';
+        //     // print_r($current_products);
+        //     // echo '</pre>';
+            
+        //     foreach ( $current_products as $key => $variation ) {
+                
+        //         $product = wc_get_product($variation);
+        //         echo '<pre>';
+        //         print_r($product);
+        //         echo '</pre>';
+
+        //     }
+
+        //     // foreach ( $product->get_available_variations() as $key => $variation ) {
+        //     //     // Loop through the product attributes for this variation
+        //     //     foreach ($variation['attributes'] as $attribute => $term_slug ) {
+        //     //         // Get the taxonomy slug
+        //     //         $taxonmomy = str_replace( 'attribute_', '', $attribute );
+
+        //     //         // Get the attribute label name
+        //     //         $attr_label_name = wc_attribute_label( $taxonmomy );
+
+        //     //         // Display attribute labe name
+        //     //         // $term_name = get_term_by( 'slug', $term_slug, $taxonmomy )->name;
+
+        //     //         // Testing output
+        //     //         // echo '<p>' . $attr_label_name . ': ' . $term_name . '</p>';
+        //     //     }
+        //     // }
+        // }
+
         echo '</ul>';
         echo '<div class="catalog__pagination">' . get_my_pagination($query) . '</div>';
     } else {

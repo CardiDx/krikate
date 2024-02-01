@@ -13,12 +13,6 @@ defined('ABSPATH') || exit;
 global $product;
 
 $product = wc_get_product(get_the_ID());
-$variationID = null;
-if ( isset($args['variationID']) && !empty($args['variationID']) ) {
-    $variationID = $args['variationID'];
-}
-// echo $variationID;
-
 ?>
 
 
@@ -31,37 +25,6 @@ if ($product->is_type('variable')) {
     $product_image = $product_info['nt_image'];
     $product_color = $product_info['nt_color'];
     $product_price = $product_info['nt_price'];
-
-    // if we need only one variation
-    if(isset($variationID) && !empty($variationID)) {
-        $variation = wc_get_product($variationID);
-        $variation_color = $variation->attributes['pa_color'];
-        
-        // $product_image = $product_image[$variation_color];
-
-        // remove excessive colors from images array
-        foreach($product_image as $product_image_color => $product_image_ids) {
-            if($product_image_color == $variation_color) {
-                continue;
-            }
-            else {
-                unset($product_image[$product_image_color]);
-            }
-            // echo '<pre>';
-            // print_r($product_image_color);
-            // echo '</pre>';
-        }
-
-        // echo '<pre>';
-        // echo '$variation_color = ';
-        // print_r($variation_color);
-        // echo '</pre>';
-
-        // echo '<pre>';
-        // echo '$product_image = ';
-        // print_r($product_image);
-        // echo '</pre>';
-    }
 ?>
 
     <li class="catalog__list-item product-card" data-product-id="<?= get_the_ID() ?>">
@@ -81,20 +44,6 @@ if ($product->is_type('variable')) {
                 echo '</div>';
             }
 
-            // if(isset($variationID) && !empty($variationID)) {
-            //     // if we have to print only 1 picture by variation id
-            //     $variation = wc_get_product($variationID);
-
-            //     // $product_info = product_info($variationID);            
-            //     // $product_image = $product_info['nt_image'];
-            //     echo '<pre>';
-            //     print_r($product_image);
-            //     echo '</pre>';
-            //     // echo '<a href="' . esc_url(get_permalink()) . '" class="">';
-            //     // echo wp_get_attachment_image($variation->image_id, 'full');
-            //     // echo '</a>';
-            // }
-            
             $variations_index = 0;
             if (count($product_image) !== 0) {
                 foreach ($product_image as $color => $images) {
@@ -145,8 +94,6 @@ if ($product->is_type('variable')) {
                 </button>
             <? endif; ?>
         </div>
-
-        <?php if(!isset($variationID) || empty($variationID)) { ?>
         <div class="product-card__colors">
             <?
             $color_index = 0;
@@ -173,8 +120,6 @@ if ($product->is_type('variable')) {
             ?>
 
         </div>
-        <?php } ?>
-
         <div class="product-card__desc">
             <a href="<?= esc_url(get_permalink()); ?>" class="product-card__title"><?= $product_title ?></a>
             <div class="product-card__wrap">
