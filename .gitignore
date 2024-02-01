@@ -3,6 +3,7 @@ wp-content/uploads/*
 wp-content/.litespeed_conf.dat
 wp-content/ewww
 wp-content/litespeed
+wp-content/woocommerce-mysklad-sync/logs/*
 
 node_modules
 # ignore log files and databases
