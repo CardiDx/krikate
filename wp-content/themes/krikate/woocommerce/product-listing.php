@@ -109,10 +109,30 @@ function product_listing($category, $filter_sort, $filter_price)
             }
 
             // if we need to print default cards with variations
-            // woocommerce_get_template( 'content-product.php' );
+            // $productHasAvailableColor = false;
+            // // storage for printed colors
+            // $usedColors = array();
+            // foreach ( $variations as $key => $variation ) {
+            //     $variationColor = $variation['attributes']['attribute_pa_color'];
+                
+            //     if (in_array($variationColor, $usedColors)) {
+            //         // we already printed variation with this color
+            //         continue;
+            //     } else {
+            //         // we need to print wariation with this color
+            //         if( $variation['max_qty'] || $variation['backorders_allowed'] ) {
+            //             $productHasAvailableColor = true;
+            //             break;
+            //         }
+            //         array_push($usedColors, $variationColor);
+            //     }
+            // }
+            // if( $productHasAvailableColor ) {
+            //     woocommerce_get_template( 'content-product.php' );
+            // }
+            // end of print default cards with variations
 
             // if we need to print every variation as single card
-
             // storage for printed colors
             $usedColors = array();
 
@@ -144,8 +164,8 @@ function product_listing($category, $filter_sort, $filter_price)
                 // print_r($usedColors);
                 // echo '</pre>';
             }
+            // end of print every variation as single card
 
-            // wc_get_template_part('content', 'product');
         }
         
         // echo '<pre>';

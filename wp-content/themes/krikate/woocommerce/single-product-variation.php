@@ -17,10 +17,31 @@ $nt_id = array();
 foreach ($variations as $variation) {
     $color = $variation['attributes']['attribute_pa_color'];
     $size = $variation['attributes']['attribute_pa_size'];
+
+    // echo 'is_in_stock';
+    // echo($variation['is_in_stock']);
+    // echo 'backorders_allowed';
+    // echo($variation['backorders_allowed']);
+    // echo 'max_qty';
+    // echo($variation['max_qty']);
+    // echo 'availability_html = ';
+    // echo($variation['availability_html']);
+    // echo '<pre>';
+    // echo strip_tags($variation['availability_html']);
+    // echo 'backorders_allowed';
+    // print_r($variation['backorders_allowed']);
+    // print_r($variation);
+    // echo '</pre>';
+
+    if( !$variation['is_in_stock'] && !$variation['backorders_allowed'] ) {
+        continue;
+    }
+
+
     if (!in_array($color, $nt_color)) {
         $nt_color[] = $color;
     }
-    $nt_size[$color][] = $size;
+    $nt_size[$color][] = $size;  
 
     foreach ($variation["variation_gallery_images"] as $variation_image) {
         $image = $variation_image['image_id'];
@@ -39,8 +60,14 @@ foreach ($variations as $variation) {
 }
 
 
-$variation_key = $nt_color[0];
-$variation_size = $nt_size[$nt_color[0]][0];
+$variation_key = null;
+if( isset($nt_color[0]) ){
+    $variation_key = $nt_color[0];
+}
+$variation_size = null;
+if( isset($nt_size[$variation_key][0]) ){
+    $variation_size = $nt_size[$variation_key][0];
+}
 
 
 
@@ -52,7 +79,14 @@ $variation_size = $nt_size[$nt_color[0]][0];
             <div class="product__wrapper">
 
                 <div class="product__gallery">
-                    <?= view_product_image($nt_image, $variation_key); ?>
+                    <?php if($variation_key) { ?>
+                        <?= view_product_image($nt_image, $variation_key); ?>
+                    <?php 
+                    } 
+                    else {
+                        echo '<h1 class="product__title">Извините, именно этот товар мы весь распродали</h1>';
+                    }
+                    ?>
                 </div>
 
 

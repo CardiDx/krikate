@@ -34,7 +34,10 @@ if ($product->is_type('variable')) {
     // getting name of color
     $taxonomy = 'pa_color';
     $meta = get_post_meta($variationID, 'attribute_'.$taxonomy, true);
-    $colorName = get_term_by('slug', $meta, $taxonomy)->name;
+    $colorName = get_term_by('slug', $meta, $taxonomy);
+    if(isset($colorName->name) && !empty($colorName->name)) {
+        $colorName = $colorName->name;
+    }
 
     // if we need only one variation
     if(isset($variationID) && !empty($variationID)) {
