@@ -17,7 +17,6 @@ $variationID = null;
 if ( isset($args['variationID']) && !empty($args['variationID']) ) {
     $variationID = $args['variationID'];
 }
-// echo $variationID;
 
 ?>
 
@@ -31,6 +30,11 @@ if ($product->is_type('variable')) {
     $product_image = $product_info['nt_image'];
     $product_color = $product_info['nt_color'];
     $product_price = $product_info['nt_price'];
+
+    // getting name of color
+    $taxonomy = 'pa_color';
+    $meta = get_post_meta($variationID, 'attribute_'.$taxonomy, true);
+    $colorName = get_term_by('slug', $meta, $taxonomy)->name;
 
     // if we need only one variation
     if(isset($variationID) && !empty($variationID)) {
@@ -47,14 +51,13 @@ if ($product->is_type('variable')) {
             else {
                 unset($product_image[$product_image_color]);
             }
-            // echo '<pre>';
-            // print_r($product_image_color);
-            // echo '</pre>';
         }
 
         // echo '<pre>';
-        // echo '$variation_color = ';
-        // print_r($variation_color);
+        // print_r($variation);
+        // print_r($variation);
+        // print_r($variation_attributes['pa_color']);
+        // print_r($colorName);
         // echo '</pre>';
 
         // echo '<pre>';
@@ -176,7 +179,7 @@ if ($product->is_type('variable')) {
         <?php } ?>
 
         <div class="product-card__desc">
-            <a href="<?= esc_url(get_permalink()); ?>" class="product-card__title"><?= $product_title ?></a>
+            <a href="<?= esc_url(get_permalink()); ?>" class="product-card__title"><?= $product_title ?><?php if(isset($colorName) && !empty($colorName)){ echo ' - ' . $colorName; } ?></a>
             <div class="product-card__wrap">
                 <?
                 view_product_price_listing($product_price);

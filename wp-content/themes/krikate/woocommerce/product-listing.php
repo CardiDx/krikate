@@ -108,11 +108,19 @@ function product_listing($category, $filter_sort, $filter_price)
                 // }
             }
 
+            // if we need to print default cards with variations
+            // woocommerce_get_template( 'content-product.php' );
+
+            // if we need to print every variation as single card
+
             // storage for printed colors
             $usedColors = array();
 
             foreach ( $product->get_available_variations() as $key => $variation ) {
                 // echo '<pre>';
+                // echo 'availability_html = ' . $variation['availability_html'];
+                // echo 'max_qty = ' . $variation['max_qty'];
+                // echo 'backorders_allowed = ' . $variation['backorders_allowed'];
                 // print_r($variation);
                 // print_r($variation['variation_id']);
                 // print_r($variation['image']['url']);
@@ -126,8 +134,9 @@ function product_listing($category, $filter_sort, $filter_price)
                     continue;
                 } else {
                     // we need to print wariation with this color
-                    // woocommerce_get_template( 'content-product.php' );
-                    woocommerce_get_template( 'content-product.php', array('variationID' => $variation['variation_id']) );
+                    if( $variation['max_qty'] || $variation['backorders_allowed'] ) {
+                        woocommerce_get_template( 'content-product.php', array('variationID' => $variation['variation_id']) );
+                    }
                     array_push($usedColors, $variationColor);
                 }
                 
