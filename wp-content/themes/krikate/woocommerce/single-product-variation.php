@@ -230,8 +230,29 @@ if( isset($nt_size[$variation_key][0]) ){
 
                     while ($cross_sells_query->have_posts()) {
                         $cross_sells_query->the_post();
-                        wc_get_template_part('content', 'product');
+                        // wc_get_template_part('content', 'product');
+                        
+                        $product_id = get_the_ID();
+                        $product = wc_get_product($product_id);
+                        $usedColors = array();
+    
+                        foreach ( $product->get_available_variations() as $key => $variation ) {
+                            $variationColor = $variation['attributes']['attribute_pa_color'];
+                            
+                            if (in_array($variationColor, $usedColors)) {
+                                // we already printed variation with this color
+                                continue;
+                            } else {
+                                // we need to print wariation with this color
+                                if( $variation['max_qty'] || $variation['backorders_allowed'] ) {
+                                    woocommerce_get_template( 'content-product.php', array('variationID' => $variation['variation_id']) );
+                                }
+                                array_push($usedColors, $variationColor);
+                            }
+                        }
                     }
+
+
                     echo '</ul>';
                 }
                 wp_reset_postdata();
@@ -255,7 +276,26 @@ if( isset($nt_size[$variation_key][0]) ){
 
                     while ($cross_sells_query->have_posts()) {
                         $cross_sells_query->the_post();
-                        wc_get_template_part('content', 'product');
+                        // wc_get_template_part('content', 'product');
+                        
+                        $product_id = get_the_ID();
+                        $product = wc_get_product($product_id);
+                        $usedColors = array();
+    
+                        foreach ( $product->get_available_variations() as $key => $variation ) {
+                            $variationColor = $variation['attributes']['attribute_pa_color'];
+                            
+                            if (in_array($variationColor, $usedColors)) {
+                                // we already printed variation with this color
+                                continue;
+                            } else {
+                                // we need to print wariation with this color
+                                if( $variation['max_qty'] || $variation['backorders_allowed'] ) {
+                                    woocommerce_get_template( 'content-product.php', array('variationID' => $variation['variation_id']) );
+                                }
+                                array_push($usedColors, $variationColor);
+                            }
+                        }
                     }
                     echo '</ul>';
                 }
@@ -290,7 +330,35 @@ if( isset($nt_size[$variation_key][0]) ){
 
             while ($recently_viewed_query->have_posts()) {
                 $recently_viewed_query->the_post();
-                wc_get_template_part('content', 'product');
+                // wc_get_template_part('content', 'product');
+                        
+                // $product_id = get_the_ID();
+                // $product = wc_get_product($product_id);
+                // $variations = $product->get_available_variations();
+                // $productHasAvailableColor = false;
+                // // storage for printed colors
+                // $usedColors = array();
+                // foreach ( $variations as $key => $variation ) {
+                //     $variationColor = $variation['attributes']['attribute_pa_color'];
+                    
+                //     if (in_array($variationColor, $usedColors)) {
+                //         // we already printed variation with this color
+                //         continue;
+                //     } else {
+                //         // we need to print wariation with this color
+                //         // echo '<pre>';
+                //         // print_r($variation);
+                //         // echo '</pre>';
+                //         if( $variation['max_qty'] || $variation['backorders_allowed'] ) {
+                //             $productHasAvailableColor = true;
+                //             // break;
+                //         }
+                //         array_push($usedColors, $variationColor);
+                //     }
+                // }
+                // if( $productHasAvailableColor ) {
+                    woocommerce_get_template( 'content-product.php' );
+                // }
             }
 
             echo '</ul></div></section>';
