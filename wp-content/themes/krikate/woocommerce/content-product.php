@@ -24,22 +24,14 @@ if ( isset($args['variationID']) && !empty($args['variationID']) ) {
 <?
 $product_title = get_the_title();
 if ($product->is_type('variable')) {
-    $variations = $product->get_available_variations();
     $product_info = product_info(get_the_ID());
+    $variations = $product->get_available_variations();
 
     $product_image = $product_info['nt_image'];
     $product_color = $product_info['nt_color'];
     $product_price = $product_info['nt_price'];
 
-    // getting name of color
-    $taxonomy = 'pa_color';
-    $meta = get_post_meta($variationID, 'attribute_'.$taxonomy, true);
-    $colorName = get_term_by('slug', $meta, $taxonomy);
-    if(isset($colorName->name) && !empty($colorName->name)) {
-        $colorName = $colorName->name;
-    }
-
-    // if we need only one variation
+    // если в контент передана конкретная вариация и надо выводить именно ее
     if(isset($variationID) && !empty($variationID)) {
         $variation = wc_get_product($variationID);
         $variation_color = $variation->attributes['pa_color'];
@@ -68,6 +60,78 @@ if ($product->is_type('variable')) {
         // print_r($product_image);
         // echo '</pre>';
     }
+
+    // если в контент не была передана конкретная вариация и нам надо почистить пустые вариации
+    if(!$variationID) {
+        $usedColors = array();
+        foreach( $variations as $key => $variation ){
+            $variationColor = $variation['attributes']['attribute_pa_color'];
+            // echo '<pre>';
+            // print_r($variation);
+            // print_r($variation['attributes']['attribute_pa_color']);
+            // echo '</pre>';   
+            // echo $key;
+            // echo ' ?? ';
+            // echo('is_in_stock = ' . $variation['is_in_stock']);
+            // echo ' ?? ';
+            // echo('max_qty = ' . $variation['max_qty']);
+            // echo ' ?? ';
+            // echo('backorders_allowed = ' . $variation['backorders_allowed']);
+            // echo ' ?? ';
+            if( $variation['is_in_stock'] || $variation['max_qty'] || $variation['backorders_allowed'] ) {
+                // записываем цвет как используемый
+                if (!in_array($variationColor, $usedColors)) {
+                    array_push($usedColors, $variationColor);
+                }
+                continue;
+            }
+            else {
+                // удаляем пустые вариации
+                unset($variations[$key]);
+            }
+        }
+
+        // echo '<pre>';
+        // echo '$usedColors = ';
+        // print_r($usedColors);
+        // echo '$product_image = ';
+        // print_r($product_image);
+        // echo '$product_color = ';
+        // print_r($product_color);
+        // echo '</pre>';
+
+
+        // убираем пикчи цветов, которых нет в наличии
+        foreach( $product_image as $key => $product_image_color ){
+            if( !in_array($key, $usedColors) ){ 
+                unset($product_image[$key]);               
+            }
+        }
+
+        // заменяем используемые цвета на вычисленные выше
+        $product_color = $usedColors;
+
+        // echo '  ????  ';
+
+        // echo '<pre>';
+        // echo '$usedColors = ';
+        // print_r($usedColors);
+        // echo '$product_image = ';
+        // print_r($product_image);
+        // echo '$product_color = ';
+        // print_r($product_color);
+        // echo '</pre>';
+    }
+
+
+    // получаем цвет
+    $taxonomy = 'pa_color';
+    $meta = get_post_meta($variationID, 'attribute_'.$taxonomy, true);
+    $colorName = get_term_by('slug', $meta, $taxonomy);
+    if(isset($colorName->name) && !empty($colorName->name)) {
+        $colorName = $colorName->name;
+    }
+
 ?>
 
     <li class="catalog__list-item product-card" data-product-id="<?= get_the_ID() ?>">

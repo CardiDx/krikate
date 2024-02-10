@@ -92,13 +92,12 @@ $category_products = get_field('category_products');
                         $productsCounter = 0;
 
                         while ($products_list->have_posts()) {
+                            $products_list->the_post();
 
                             // прерываем вывод постов если было выведено уже 4
                             if( $productsCounter >= 4 ) {
                                 break;
                             }
-
-                            $products_list->the_post();
 
                             $product_id = get_the_ID();
                             $product = wc_get_product($product_id);
