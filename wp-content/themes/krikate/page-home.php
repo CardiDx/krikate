@@ -80,7 +80,7 @@ $category_products = get_field('category_products');
                 if (!empty($products['list'])) {
                     $args = array(
                         'post_type' => 'product',
-                        'posts_per_page' => 4,
+                        // 'posts_per_page' => 4,
                         'post__in' => $products['list'],
                         'orderby' => 'post__in',
                     );
@@ -88,9 +88,53 @@ $category_products = get_field('category_products');
                     if ($products_list->have_posts()) {
                         echo '<ul class="collection__list list-reset">';
 
+                        // счетчик выведенных товаров
+                        $productsCounter = 0;
+
                         while ($products_list->have_posts()) {
+
+                            // прерываем вывод постов если было выведено уже 4
+                            if( $productsCounter >= 4 ) {
+                                break;
+                            }
+
                             $products_list->the_post();
-                            wc_get_template_part('content', 'product');
+
+                            $product_id = get_the_ID();
+                            $product = wc_get_product($product_id);
+                            $usedColors = array();
+
+                            // перебираем все вариации товара
+                            foreach ( $product->get_available_variations() as $key => $variation ) {
+                                // echo '<pre>';
+                                // print_r($variation);
+                                // echo '</pre>';
+
+                                $variationColor = $variation['attributes']['attribute_pa_color'];
+                                
+                                if (in_array($variationColor, $usedColors)) {
+                                    // мы уже записали в массив этот цвет
+                                    continue;
+                                } else {
+                                    // этого цвета в массиве не было
+                                    if( $variation['is_in_stock'] || $variation['max_qty'] || $variation['backorders_allowed'] ) {
+                                        // вывод карточки ОДНОЙ вариации
+                                        // woocommerce_get_template( 'content-product.php', array('variationID' => $variation['variation_id']) );
+                                        // добавляем цвет в массив, если он есть в наличии или предзаказе
+                                        array_push($usedColors, $variationColor);
+                                    }
+                                }
+                                
+                            }
+
+                            if( !empty($usedColors) ){
+                                // вывод картоки с точками
+                                wc_get_template_part('content', 'product');   
+                                // инкрементим счетчик выведенных товаров
+                                $productsCounter++;
+                            }
+
+
                         }
                         echo '</ul>';
                     }
