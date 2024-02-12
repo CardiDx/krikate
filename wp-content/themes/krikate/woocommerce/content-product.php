@@ -31,11 +31,13 @@ if ($product->is_type('variable')) {
     $product_color = $product_info['nt_color'];
     $product_price = $product_info['nt_price'];
 
+    $variation_color = null;
     // если в контент передана конкретная вариация и надо выводить именно ее
     if(isset($variationID) && !empty($variationID)) {
         $variation = wc_get_product($variationID);
         $variation_color = $variation->attributes['pa_color'];
-        
+        // echo $variation_color;
+
         // $product_image = $product_image[$variation_color];
 
         // remove excessive colors from images array
@@ -216,7 +218,33 @@ if ($product->is_type('variable')) {
             <? endif; ?>
         </div>
 
-        <?php if(!isset($variationID) || empty($variationID)) { ?>
+        <?php //if(!isset($variationID) || empty($variationID)) { ?>
+        <?php if($variation_color) { ?>
+        <div class="product-card__colors" style="display: none;">
+            <?
+            foreach ($product_color as $color) {
+                $term = get_term_by('slug', $color, 'pa_color');
+                echo $variation_color;
+                echo $color;
+                if ($term && !is_wp_error($term)) {
+                    $color_code = get_term_meta($term->term_id, 'color_code', true);
+                    $color_name = $term->name;
+                    if (empty($color_code)) {
+                        $color_code = '#1D1D1B';
+                    }
+                }
+                if ($variation_color == $color) {
+                    echo '<button id="' . $color . '" style="color: ' . $color_code . ';" class="product-card__colors-item product-card__colors-item--selected btn-reset" data-color-name="' . $color_name . '"></button>';
+                } 
+            }
+            if($product->slug == 'podarochnaja-karta'){
+                echo '<button id="belyj" style="color: #ffffff;" class="product-card__colors-item product-card__colors-item--selected btn-reset" data-color-name="Белый"></button>';
+            }
+            ?>
+
+        </div>
+        <?php }
+        else { ?>
         <div class="product-card__colors">
             <?
             $color_index = 0;
