@@ -66,30 +66,32 @@ if ($product->is_type('variable')) {
     // если в контент не была передана конкретная вариация и нам надо почистить пустые вариации
     if(!$variationID) {
         $usedColors = array();
-        foreach( $variations as $key => $variation ){
-            $variationColor = $variation['attributes']['attribute_pa_color'];
-            // echo '<pre>';
-            // print_r($variation);
-            // print_r($variation['attributes']['attribute_pa_color']);
-            // echo '</pre>';   
-            // echo $key;
-            // echo ' ?? ';
-            // echo('is_in_stock = ' . $variation['is_in_stock']);
-            // echo ' ?? ';
-            // echo('max_qty = ' . $variation['max_qty']);
-            // echo ' ?? ';
-            // echo('backorders_allowed = ' . $variation['backorders_allowed']);
-            // echo ' ?? ';
-            if( $variation['is_in_stock'] || $variation['max_qty'] || $variation['backorders_allowed'] ) {
-                // записываем цвет как используемый
-                if (!in_array($variationColor, $usedColors)) {
-                    array_push($usedColors, $variationColor);
+        if( !$product->is_type('pw-gift-card') ) {
+            foreach( $variations as $key => $variation ){
+                $variationColor = $variation['attributes']['attribute_pa_color'];
+                // echo '<pre>';
+                // print_r($variation);
+                // print_r($variation['attributes']['attribute_pa_color']);
+                // echo '</pre>';   
+                // echo $key;
+                // echo ' ?? ';
+                // echo('is_in_stock = ' . $variation['is_in_stock']);
+                // echo ' ?? ';
+                // echo('max_qty = ' . $variation['max_qty']);
+                // echo ' ?? ';
+                // echo('backorders_allowed = ' . $variation['backorders_allowed']);
+                // echo ' ?? ';
+                if( $variation['is_in_stock'] || $variation['max_qty'] || $variation['backorders_allowed'] ) {
+                    // записываем цвет как используемый
+                    if (!in_array($variationColor, $usedColors)) {
+                        array_push($usedColors, $variationColor);
+                    }
+                    continue;
                 }
-                continue;
-            }
-            else {
-                // удаляем пустые вариации
-                unset($variations[$key]);
+                else {
+                    // удаляем пустые вариации
+                    unset($variations[$key]);
+                }
             }
         }
 

@@ -73,33 +73,36 @@ function product_listing($category, $filter_sort, $filter_price)
 
             $product_id = get_the_ID();
             $product = wc_get_product($product_id);
+            $variations = $product->get_available_variations();
             $usedColors = array();
 
             // перебираем все вариации товара
-            foreach ( $product->get_available_variations() as $key => $variation ) {
-                // echo '<pre>';
-                // print_r($variation);
-                // echo '</pre>';
-
-                $variationColor = $variation['attributes']['attribute_pa_color'];
-                
-                if (in_array($variationColor, $usedColors)) {
-                    // мы уже записали в массив этот цвет
-                    continue;
-                } else {
-                    // этого цвета в массиве не было
-                    if( $variation['is_in_stock'] || $variation['max_qty'] || $variation['backorders_allowed'] ) {
-                        // вывод карточки ОДНОЙ вариации
-                        // woocommerce_get_template( 'content-product.php', array('variationID' => $variation['variation_id']) );
-                        // добавляем цвет в массив, если он есть в наличии или предзаказе
-                        array_push($usedColors, $variationColor);
+            if( !$product->is_type('pw-gift-card') ) {
+                foreach ( $variations as $key => $variation ) {
+                    // echo '<pre>';
+                    // print_r($variation);
+                    // echo '</pre>';
+    
+                    $variationColor = $variation['attributes']['attribute_pa_color'];
+                    
+                    if (in_array($variationColor, $usedColors)) {
+                        // мы уже записали в массив этот цвет
+                        continue;
+                    } else {
+                        // этого цвета в массиве не было
+                        if( $variation['is_in_stock'] || $variation['max_qty'] || $variation['backorders_allowed'] ) {
+                            // вывод карточки ОДНОЙ вариации
+                            // woocommerce_get_template( 'content-product.php', array('variationID' => $variation['variation_id']) );
+                            // добавляем цвет в массив, если он есть в наличии или предзаказе
+                            array_push($usedColors, $variationColor);
+                        }
                     }
+                    
                 }
-                
             }
 
             // вывод картоки с точками
-            if( !empty($usedColors) ){
+            if( $product->is_type('pw-gift-card') || !empty($usedColors) ){
                 wc_get_template_part('content', 'product');
             }
         }
