@@ -90,7 +90,7 @@ function product_listing($category, $filter_sort, $filter_price)
                     // этого цвета в массиве не было
                     if( $variation['is_in_stock'] || $variation['max_qty'] || $variation['backorders_allowed'] ) {
                         // вывод карточки ОДНОЙ вариации
-                        woocommerce_get_template( 'content-product.php', array('variationID' => $variation['variation_id']) );
+                        // woocommerce_get_template( 'content-product.php', array('variationID' => $variation['variation_id']) );
                         // добавляем цвет в массив, если он есть в наличии или предзаказе
                         array_push($usedColors, $variationColor);
                     }
@@ -98,10 +98,10 @@ function product_listing($category, $filter_sort, $filter_price)
                 
             }
 
-            // if( !empty($usedColors) ){
-            //     // вывод картоки с точками
-            //     wc_get_template_part('content', 'product');
-            // }
+            // вывод картоки с точками
+            if( !empty($usedColors) ){
+                wc_get_template_part('content', 'product');
+            }
         }
         echo '</ul>';
         echo '<div class="catalog__pagination">' . get_my_pagination($query) . '</div>';
