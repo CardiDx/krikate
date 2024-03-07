@@ -9,6 +9,7 @@ if($product->slug == 'podarochnaja-karta') {
     // include('single-product-variation.php');
 } elseif ($product->is_type('simple')) {
     // Товар является обычным (простым)
+    // include('single-product-simple.php');
 
 } elseif ($product->is_type('variable')) {
     // Товар является вариативным
