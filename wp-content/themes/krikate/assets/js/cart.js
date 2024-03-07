@@ -429,35 +429,37 @@ function inputCheckoutValidate(itl, type, input) {
         }
 
         var isValid = true;
-        if (form.querySelector('#shipping_method_0_local_pickup-3').checked == false) {
-            var shipping_inputs = document.querySelectorAll('.shipping_address .validate-required input');
-
-            for (var i = 0; i < shipping_inputs.length; i++) {
-                if (shipping_inputs[i].value.trim() === '') {
-                    isValid = false;
-                    shipping_inputs[i].closest('.checkout__inp').classList.remove('validate_ok');
-                    if (type == 'change' && shipping_inputs[i] == input) {
-                        shipping_inputs[i].closest('.checkout__inp').classList.add('validation_error');
-                    }
-                } else {
-                    if (shipping_inputs[i].getAttribute('name') == 'shipping_postcode') {
-                        var pattern_postcode = /^[0-9]+$/;
-                        if (!pattern_postcode.test(shipping_inputs[i].value)) {
-                            isValid = false;
-                            shipping_inputs[i].closest('.checkout__inp').classList.remove('validate_ok');
-                            if (type == 'change' && shipping_inputs[i] == input) {
-                                shipping_inputs[i].closest('.checkout__inp').classList.add('validation_error');
+        if (form.querySelector('#shipping_method_0_local_pickup-3')) {
+            if (form.querySelector('#shipping_method_0_local_pickup-3').checked == false) {
+                var shipping_inputs = document.querySelectorAll('.shipping_address .validate-required input');
+    
+                for (var i = 0; i < shipping_inputs.length; i++) {
+                    if (shipping_inputs[i].value.trim() === '') {
+                        isValid = false;
+                        shipping_inputs[i].closest('.checkout__inp').classList.remove('validate_ok');
+                        if (type == 'change' && shipping_inputs[i] == input) {
+                            shipping_inputs[i].closest('.checkout__inp').classList.add('validation_error');
+                        }
+                    } else {
+                        if (shipping_inputs[i].getAttribute('name') == 'shipping_postcode') {
+                            var pattern_postcode = /^[0-9]+$/;
+                            if (!pattern_postcode.test(shipping_inputs[i].value)) {
+                                isValid = false;
+                                shipping_inputs[i].closest('.checkout__inp').classList.remove('validate_ok');
+                                if (type == 'change' && shipping_inputs[i] == input) {
+                                    shipping_inputs[i].closest('.checkout__inp').classList.add('validation_error');
+                                }
+                            } else {
+                                shipping_inputs[i].closest('.checkout__inp').classList.add('validate_ok');
+                                if (type == 'keyup') {
+                                    shipping_inputs[i].closest('.checkout__inp').classList.remove('validation_error');
+                                }
                             }
                         } else {
                             shipping_inputs[i].closest('.checkout__inp').classList.add('validate_ok');
                             if (type == 'keyup') {
                                 shipping_inputs[i].closest('.checkout__inp').classList.remove('validation_error');
                             }
-                        }
-                    } else {
-                        shipping_inputs[i].closest('.checkout__inp').classList.add('validate_ok');
-                        if (type == 'keyup') {
-                            shipping_inputs[i].closest('.checkout__inp').classList.remove('validation_error');
                         }
                     }
                 }
