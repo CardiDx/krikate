@@ -70,6 +70,17 @@ function removeFromCartPage(removeItem) {
 }
 
 
+function updateCartOnClick() {
+    updateCart();
+    setTimeout(
+        function() 
+        {
+            location.reload();
+        },
+    1000);
+}
+
+
 function clearCart() {
     jQuery.ajax({
         type: 'POST',

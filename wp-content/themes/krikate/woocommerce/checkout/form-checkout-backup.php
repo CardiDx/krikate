@@ -61,14 +61,10 @@ if (!$checkout->is_registration_enabled() && $checkout->is_registration_required
 				Сумма заказа
 				<span class="basket-total__item_full-price"> 0 BYN</span>
 			</div>
-			
 			<div class="basket-total__item">
 				Скидка
 				<span class="basket-total__item_sale-price">— 0 BYN</span>
 			</div>
-
-			<?php do_action( 'woocommerce_review_order_before_order_total' ); ?>
-
 			<div class="basket-total__item">
 				Стоимость доставки
 				<span class="basket-total__item_delivery-price">0 BYN</span>
@@ -83,12 +79,7 @@ if (!$checkout->is_registration_enabled() && $checkout->is_registration_required
 
 	<?php do_action('woocommerce_checkout_after_order_review'); ?>
 
-	<div class="checkout__section checkout__promocode" style="margin-bottom: 0;">
-			
-		<div class="basket-total__item">
-			<label>Есть промокод или подарочная карта?</label>
-		</div>
-
+	<div class="checkout__section checkout__promocode">
 		<?
 		$applied_coupons = WC()->cart->get_applied_coupons();
 		if (count($applied_coupons) == 0) :
@@ -108,42 +99,12 @@ if (!$checkout->is_registration_enabled() && $checkout->is_registration_required
 			</div>
 		<? endif; ?>
 		<div class="checkout__promocode-massage"></div>
-
-		<?php do_action('woocommerce_review_order_before_submit'); ?>
 	</div>
 
-	<?php /* ?> 
-	<div class="checkout__section checkout__promocode">
-		<h2>hello there</h2>
-
-		<?php
-		global $pw_gift_cards_redeeming;
-		// if ( $pw_gift_cards_redeeming->cart_contains_gift_card() && 'yes' !== get_option( 'pwgc_allow_gift_card_purchasing', 'yes' ) ) {
-		// 	return;
-		// }
-		?>
-
-		<div id="pwgc-redeem-gift-card-form">
-			<form id="pwgc-redeem-form">
-				<label for="pwgc-redeem-gift-card-number"><?php _e( 'Have a gift card?', 'pw-woocommerce-gift-cards' ); ?></label>
-				<div id="pwgc-redeem-error" style="color: red;"></div>
-				<input type="text" id="pwgc-redeem-gift-card-number" name="card_number" autocomplete="off" placeholder="<?php esc_html_e( 'Gift card number', 'pw-woocommerce-gift-cards' ); ?>">
-				<input type="submit" id="pwgc-redeem-button" data-wait-text="<?php esc_html_e( 'Please wait...', 'pw-woocommerce-gift-cards' ); ?>" style="display: block; margin-bottom: 24px; margin-top: 4px;" value="<?php esc_html_e( 'Apply Gift Card', 'pw-woocommerce-gift-cards' ); ?>">
-			</form>
-		</div>
-		<script>
-			jQuery(function() {
-				jQuery('#pwgc-redeem-form').off('submit.pimwick').on('submit.pimwick', function(e) {
-					pwgc_checkout_redeem_gift_card(jQuery('#pwgc-redeem-button'));
-					e.preventDefault();
-					return false;
-				});
-			});
-		</script>
-	</div>
-	<?php */ ?>
 
 	<div class="checkout__section submit-nt">
+		<div class="checkout__policy"> <input type="checkbox" name="accept-policy" checked> <label for="accept-policy"> Размещая заказ, вы принимаете наши <a href="<?= get_field('policy', 'option'); ?>">Политику
+                            конфиденциальности</a> и <a href="/publichnaya-oferta/">Договор публичной оферты.</a></label></div>
 
 		<div class="form-row place-order">
 			<noscript>
@@ -158,13 +119,7 @@ if (!$checkout->is_registration_enabled() && $checkout->is_registration_required
 			$order_button_text = 'Оформить заказ';
 			?>
 
-			<?php //do_action('woocommerce_review_order_before_submit'); ?>
-
-			<div class="checkout__policy"> <input type="checkbox" name="accept-policy" checked> 
-				<label for="accept-policy" style="line-height: 1.3;">Размещая заказ, вы принимаете наши <a href="<?= get_field('policy', 'option'); ?>">Политику
-                            конфиденциальности</a> и <a href="/publichnaya-oferta/">Договор публичной оферты.</a>
-				</label>
-			</div>
+			<?php do_action('woocommerce_review_order_before_submit'); ?>
 
 			<?php echo apply_filters('woocommerce_order_button_html', '<button type="submit" class="checkout__btn primary-button btn-reset' . esc_attr(wc_wp_theme_get_element_class_name('button') ? ' ' . wc_wp_theme_get_element_class_name('button') : '') . '" name="woocommerce_checkout_place_order" id="place_order" value="' . esc_attr($order_button_text) . '" data-value="' . esc_attr($order_button_text) . '">' . esc_html($order_button_text) . '</button>'); // @codingStandardsIgnoreLine 
 			?>

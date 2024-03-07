@@ -4424,6 +4424,10 @@ main {
     color: #818181;
 }
 
+.basket-total__item.--mb-5 {
+    margin-bottom: 5px;
+}
+
 .basket-total__item span:not(.woocommerce-Price-currencySymbol) {
     margin-left: 20px;
     color: #1d1d1b;
@@ -5290,23 +5294,23 @@ span.select2-selection.select2-selection--single {
 }
 
 .checkout__promocode-input {
-    width: 60%;
-    padding: 14px 18px;
-    border: none;
-    outline: none;
-    color: #1d1d1b;
-    background-color: #ffffff;
+    width: 60% !important;
+    padding: 14px 18px !important;
+    border: none !important;
+    outline: none !important;
+    color: #1d1d1b !important;
+    background-color: #ffffff !important;
 }
 
 .checkout__promocode-apply {
-    width: 40%;
-    justify-content: center;
+    width: 40% !important;
+    justify-content: center !important;
 }
 
 .checkout__promocode-box {
-    display: flex;
-    gap: 10px;
-    margin: 10px 0;
+    display: flex !important;
+    gap: 10px !important;
+    margin: 10px 0 !important;
 }
 
 .numbers__item-title span {
