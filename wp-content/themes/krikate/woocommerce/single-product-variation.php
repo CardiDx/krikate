@@ -116,13 +116,25 @@ if( isset($nt_size[$variation_key][0]) ){
                             }
                         }
                         ?>
+                        
+        <?php 
+        $isInGuideCategory = false;
+        $terms = get_the_terms( $product->get_id(), 'product_cat' );
+        foreach($terms as $term) {
+            if($term->slug == 'gajdy') {
+                $isInGuideCategory = true;
+            }
+        }
+        ?>
                         <div class="product__color">
                             <?= view_product_colors($nt_image, $variation_key); ?>
                         </div>
                         <div class="product__size">
                             <div class="product__size-label">
                                 Размер
-                                <button class="product__size-table btn-reset">Таблица размеров</button>
+                                <?php if(!$isInGuideCategory) { ?>
+                                    <button class="product__size-table btn-reset">Таблица размеров</button>
+                                <?php } ?>
                             </div>
 
                             <?
@@ -152,51 +164,54 @@ if( isset($nt_size[$variation_key][0]) ){
                             <button id="openOnBackorderPopup" class="popup__btn primary-button btn-reset product_onbackorder">Оформить предзаказ</button>
                         </div>
                     <? endif; ?>
-                    <div class="product__accordion accordion">
-                        <div class="accordion__header accordion__header--active">
-                            <div class="accordion__title">Уход</div>
-                            <svg width="13" height="12" viewBox="0 0 13 12">
-                                <use xlink:href="/wp-content/themes/krikate/assets/styles/svg-sprite.svg#show"></use>
-                            </svg>
-                        </div>
-                        <div class="accordion__body accordion__body--active">
-                            <div class="accordion__text">
-                                <ul class="list-reset">
-                                    <? if (isset($uhod) && !empty($uhod)){
-                                        view_care($uhod);
-                                    }
-                                    ?>
-                                </ul>
-                                <p>Читайте подробнее на странице <a href="/uhod/">Уход</a></p>
+                    <? if (isset($uhod) && !empty($uhod)){ ?>
+                        <div class="product__accordion accordion">
+                            <div class="accordion__header accordion__header--active">
+                                <div class="accordion__title">Уход</div>
+                                <svg width="13" height="12" viewBox="0 0 13 12">
+                                    <use xlink:href="/wp-content/themes/krikate/assets/styles/svg-sprite.svg#show"></use>
+                                </svg>
+                            </div>
+                            <div class="accordion__body accordion__body--active">
+                                <div class="accordion__text">
+                                    <ul class="list-reset">
+                                        <? view_care($uhod); ?>
+                                    </ul>
+                                    <p>Читайте подробнее на странице <a href="/uhod/">Уход</a></p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="product__accordion accordion">
-                        <div class="accordion__header accordion__header--active">
-                            <div class="accordion__title">Состав</div>
-                            <svg width="13" height="12" viewBox="0 0 13 12">
-                                <use xlink:href="/wp-content/themes/krikate/assets/styles/svg-sprite.svg#show"></use>
-                            </svg>
-                        </div>
-                        <div class="accordion__body accordion__body--active">
-                            <div class="accordion__text">
-                                <? the_excerpt(); ?>
+                    <? } ?>
+                    <?php if ( !empty($product->short_description) ) { ?>
+                        <div class="product__accordion accordion">
+                            <div class="accordion__header accordion__header--active">
+                                <div class="accordion__title">Состав</div>
+                                <svg width="13" height="12" viewBox="0 0 13 12">
+                                    <use xlink:href="/wp-content/themes/krikate/assets/styles/svg-sprite.svg#show"></use>
+                                </svg>
+                            </div>
+                            <div class="accordion__body accordion__body--active">
+                                <div class="accordion__text">
+                                    <?= $product->short_description; ?>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="product__accordion accordion">
-                        <div class="accordion__header accordion__header--active">
-                            <div class="accordion__title">Описание</div>
-                            <svg width="13" height="12" viewBox="0 0 13 12">
-                                <use xlink:href="/wp-content/themes/krikate/assets/styles/svg-sprite.svg#show"></use>
-                            </svg>
-                        </div>
-                        <div class="accordion__body accordion__body--active">
-                            <div class="accordion__text">
-                                <? the_content(); ?>
+                    <?php } ?>
+                    <?php if ( !empty( get_the_content() ) ){ ?>
+                        <div class="product__accordion accordion">
+                            <div class="accordion__header accordion__header--active">
+                                <div class="accordion__title">Описание</div>
+                                <svg width="13" height="12" viewBox="0 0 13 12">
+                                    <use xlink:href="/wp-content/themes/krikate/assets/styles/svg-sprite.svg#show"></use>
+                                </svg>
+                            </div>
+                            <div class="accordion__body accordion__body--active">
+                                <div class="accordion__text">
+                                    <? the_content(); ?>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>
