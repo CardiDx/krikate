@@ -60,6 +60,9 @@ if (get_field('sale_name', 'option') && !empty(get_field('sale_name', 'option'))
                         <a href="/category/sale/" class="h-menu__link"><?= $sale_name ?></a>
                     </li>
                     <li class="h-menu__item">
+                        <a href="/category/gajdy/" class="h-menu__link">Гайды</a>
+                    </li>
+                    <li class="h-menu__item">
                         <a href="/shops/" class="h-menu__link">Магазины</a>
                     </li>
                     <li class="h-menu__item">
@@ -182,6 +185,7 @@ if (get_field('sale_name', 'option') && !empty(get_field('sale_name', 'option'))
                 <div class="h-mobile-menu__col">
                     <button class="h-mobile-menu__btn h-mobile-menu__link btn-reset" id="openCatalogNestedMenu">Каталог</button>
                     <a href="/category/sale/" class="h-mobile-menu__link"><?= $sale_name ?></a>
+                    <a href="/category/gajdy/" class="h-mobile-menu__link">Гайды</a>
                     <a href="/shops/" class="h-mobile-menu__link">Магазины</a>
                     <a href="/lookbook/" class="h-mobile-menu__link">Lookbook</a>
                     <button class="h-mobile-menu__btn h-mobile-menu__link btn-reset" id="openBuyersNestedMenu">Покупателям</button>
