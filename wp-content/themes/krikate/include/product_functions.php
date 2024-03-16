@@ -68,6 +68,21 @@ function view_product_image($nt_image, $key)
     return $gallery;
 }
 
+// Вывод плитки
+
+function view_product_tile($nt_image, $key)
+{
+    $gallery = '';
+    $gallery .= '<div class="gallery-slider swiper"><div class="gallery-slider__wrapper swiper-wrapper">';
+
+    foreach ($nt_image[$key] as $nt_val) {
+        $gallery .= '<div class="gallery-slider__item swiper-slide" data-product-color="' . $key . '"><a class="glightbox" href="' . wp_get_attachment_image_url($nt_val, 'full') . '">' . wp_get_attachment_image($nt_val, 'full') . '</a></div>';
+    }
+    $gallery .= '</div></div>';
+
+    return $gallery;
+}
+
 // Вывод цены
 
 function view_product_price($nt_price, $key, $size)

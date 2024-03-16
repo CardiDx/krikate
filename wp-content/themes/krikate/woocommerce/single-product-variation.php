@@ -80,7 +80,8 @@ if( isset($nt_size[$variation_key][0]) ){
 
                 <div class="product__gallery">
                     <?php if($variation_key) { ?>
-                        <?= view_product_image($nt_image, $variation_key); ?>
+                        <?php //view_product_image($nt_image, $variation_key); ?>
+                        <?= view_product_tile($nt_image, $variation_key); ?>
                     <?php 
                     } 
                     else {

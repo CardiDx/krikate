@@ -102,9 +102,9 @@ function product_listing($category, $filter_sort, $filter_price)
             }
 
             // вывод картоки с точками
-            // if( $product->is_type('pw-gift-card') || !empty($usedColors) ){
-            //     wc_get_template_part('content', 'product');
-            // }
+            if( $product->is_type('pw-gift-card') ){
+                wc_get_template_part('content', 'product');
+            }
         }
         echo '</ul>';
         echo '<div class="catalog__pagination">' . get_my_pagination($query) . '</div>';
