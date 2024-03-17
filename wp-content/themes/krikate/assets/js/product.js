@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
         var colorBlock = document.querySelectorAll('.product__color-item');
         var sizeBlock = document.querySelectorAll('.size-btn');
         var galleryBlock = document.querySelector('.product__gallery');
+        var tileBlock = document.querySelector('.product__tile');
 
         var oneClickBuy = document.querySelector('.popup-form__product');
 
@@ -34,6 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 var loadingAnimation = '<div class="product-loader"><div class="three-body"><div class="three-body__dot"></div><div class="three-body__dot"></div><div class="three-body__dot"></div></div></div>';
                 galleryBlock.innerHTML = loadingAnimation;
+                tileBlock.innerHTML = loadingAnimation;
 
 
                 jQuery.ajax({
@@ -53,6 +55,35 @@ document.addEventListener('DOMContentLoaded', function() {
                             }
 
                             galleryBlock.innerHTML = result;
+
+                            initGallerySwiper();
+                            setupCustomLightbox();
+                            updateImage();
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.log(error);
+                    }
+                });
+
+
+                jQuery.ajax({
+                    type: 'POST',
+                    url: '/wp-admin/admin-ajax.php',
+                    data: {
+                        action: 'my_ajax_view_product_tile',
+                        key: key,
+                        product_id: productId
+                    },
+                    success: function(response) {
+                        var result = JSON.parse(response);
+                        if (response) {
+                            loadingAnimation.innerHTML = '';
+                            if (typeof gallerySwiper !== 'undefined' && gallerySwiper.destroy) {
+                                gallerySwiper.destroy(true, true);
+                            }
+
+                            tileBlock.innerHTML = result;
 
                             initGallerySwiper();
                             setupCustomLightbox();

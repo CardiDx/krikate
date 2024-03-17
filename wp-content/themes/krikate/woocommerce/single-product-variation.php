@@ -80,9 +80,19 @@ if( isset($nt_size[$variation_key][0]) ){
 
                 <div class="product__gallery">
                     <?php if($variation_key) { ?>
-                        <?php //view_product_image($nt_image, $variation_key); ?>
+                        <?= view_product_image($nt_image, $variation_key); ?>
+                        <?php 
+                    } 
+                    else {
+                        echo '<h1 class="product__title">Извините, именно этот товар мы весь распродали</h1>';
+                    }
+                    ?>
+                </div>
+
+                <div class="product__tile">
+                    <?php if($variation_key) { ?>
                         <?= view_product_tile($nt_image, $variation_key); ?>
-                    <?php 
+                        <?php 
                     } 
                     else {
                         echo '<h1 class="product__title">Извините, именно этот товар мы весь распродали</h1>';

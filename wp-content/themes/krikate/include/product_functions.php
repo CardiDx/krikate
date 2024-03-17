@@ -73,10 +73,13 @@ function view_product_image($nt_image, $key)
 function view_product_tile($nt_image, $key)
 {
     $gallery = '';
-    $gallery .= '<div class="gallery-slider swiper"><div class="gallery-slider__wrapper swiper-wrapper">';
+    $gallery .= '<div class="gallery-tile-wrapper"><div class="gallery-tile">';
 
     foreach ($nt_image[$key] as $nt_val) {
-        $gallery .= '<div class="gallery-slider__item swiper-slide" data-product-color="' . $key . '"><a class="glightbox" href="' . wp_get_attachment_image_url($nt_val, 'full') . '">' . wp_get_attachment_image($nt_val, 'full') . '</a></div>';
+        $gallery .= 
+        '<div class="gallery-tile__img-wrapper" data-product-color="' . $key . '">'
+             . wp_get_attachment_image($nt_val, 'full') . 
+        '</div>';
     }
     $gallery .= '</div></div>';
 
@@ -173,6 +176,22 @@ function my_ajax_view_product_image()
 
 add_action('wp_ajax_my_ajax_view_product_image', 'my_ajax_view_product_image');
 add_action('wp_ajax_nopriv_my_ajax_view_product_image', 'my_ajax_view_product_image');
+
+
+function my_ajax_view_product_tile()
+{
+    $id = isset($_POST['product_id']) ? $_POST['product_id'] : '';
+    $key = isset($_POST['key']) ? $_POST['key'] : '';
+    $product_info = product_info($id);
+
+    $nt_image = $product_info['nt_image'];
+    $tile = view_product_tile($nt_image, $key);
+    echo json_encode($tile);
+    wp_die();
+}
+
+add_action('wp_ajax_my_ajax_view_product_tile', 'my_ajax_view_product_tile');
+add_action('wp_ajax_nopriv_my_ajax_view_product_tile', 'my_ajax_view_product_tile');
 
 
 
