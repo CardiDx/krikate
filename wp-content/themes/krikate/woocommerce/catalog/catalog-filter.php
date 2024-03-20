@@ -1,7 +1,7 @@
 <?
 $current_category = get_queried_object();
 
-if (isset($_GET['sort']) && !empty($_GET['sort']) && $_GET['sort'] !== 'popularity') {
+if (isset($_GET['sort']) && !empty($_GET['sort']) && $_GET['sort'] !== 'menu_order') {
     $filter_sort = $_GET['sort'];
 } else {
     $filter_sort = NULL;
@@ -42,6 +42,9 @@ if (isset($_GET['price']) && !empty($_GET['price']) && count(explode(',', $_GET[
     if ($filter_sort !== NULL) {
         echo '<button class="catalog__filter-item btn-reset"" data-filter-type="sort" data-sort="' . $filter_sort . '"><svg width="10" height="10" viewBox="0 0 10 10"><use xlink:href="/wp-content/themes/krikate/assets/styles/svg-sprite.svg#remove"></use></svg>';
         switch ($filter_sort) {
+            case 'popularity':
+                echo 'Популярность';
+                break;
             case 'newest':
                 echo 'Новинки';
                 break;
@@ -96,8 +99,8 @@ if (isset($_GET['price']) && !empty($_GET['price']) && count(explode(',', $_GET[
                     if ($filter_sort !== NULL) {
                         echo '<button class="filter-active filter-section__selected btn-reset" data-filter-type="sort" data-sort="' . $filter_sort . '"><svg width="10" height="10" viewBox="0 0 10 10"><use xlink:href="/wp-content/themes/krikate/assets/styles/svg-sprite.svg#remove"></use></svg>';
                         switch ($filter_sort) {
-                            case 'newest':
-                                echo 'Новинки';
+                            case 'popularity':
+                                echo 'Популярность';
                                 break;
                             case 'price_desc':
                                 echo 'По убыванию цены';
@@ -140,6 +143,19 @@ if (isset($_GET['price']) && !empty($_GET['price']) && count(explode(',', $_GET[
                     <label class="c-radio">
                         <?
                         if ($filter_sort == NULL) {
+                            echo '<input type="radio" name="sort" checked value="menu_order">';
+                        } else {
+                            echo '<input type="radio" name="sort" value="menu_order">';
+                        }
+                        ?>
+                        <div class="c-radio__body">
+                            <div class="c-radio__box"></div>
+                            <div class="c-radio__label">По умолчанию</div>
+                        </div>
+                    </label>
+                    <label class="c-radio">
+                        <?
+                        if ($filter_sort == NULL && $filter_sort == 'popularity') {
                             echo '<input type="radio" name="sort" checked value="popularity">';
                         } else {
                             echo '<input type="radio" name="sort" value="popularity">';

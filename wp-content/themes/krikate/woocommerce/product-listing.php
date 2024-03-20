@@ -9,7 +9,8 @@ function product_listing($category, $filter_sort, $filter_price)
     $args = array(
         'post_type' => 'product',
         'post_status' => 'publish',
-        'orderby' => 'popularity',
+        // 'orderby' => 'popularity',
+        'orderby' => 'menu_order',
         'paged' => $paged, // Учитываем пагинацию
         'posts_per_page' => '50',
         'tax_query' => array(
@@ -29,6 +30,9 @@ function product_listing($category, $filter_sort, $filter_price)
 
     if (!empty($filter_sort)) {
         switch ($filter_sort) {
+            case 'default':
+                $args['orderby'] = 'menu_order';
+                break;
             case 'popularity':
                 $args['orderby'] = 'popularity';
                 break;

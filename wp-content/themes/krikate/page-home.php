@@ -82,7 +82,7 @@ $category_products = get_field('category_products');
                         'post_type' => 'product',
                         // 'posts_per_page' => 4,
                         'post__in' => $products['list'],
-                        'orderby' => 'post__in',
+                        'orderby' => 'menu_order',
                     );
                     $products_list = new WP_Query($args);
                     if ($products_list->have_posts()) {
