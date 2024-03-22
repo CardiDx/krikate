@@ -41,14 +41,20 @@ if ( post_password_required() ) {
 				//do_action( 'woocommerce_before_single_product_summary' );
 				?>
 
+				<?php 
+				$image = wp_get_attachment_image_src( get_post_thumbnail_id( $product->id ), 'single-post-thumbnail' );
+				$attachment_ids = $product->get_gallery_image_ids();
+
+				
+				// echo '<pre>';
+				// print_r($attachment_ids);
+				// echo '</pre>';
+				?>
+
 				<div class="product__gallery">
 					<div class="gallery-slider swiper swiper-initialized swiper-horizontal swiper-backface-hidden">
 						<div class="gallery-slider__wrapper gallery-slider__wrapper--gitf-card swiper-wrapper" style="    justify-content: center;">
-							<?php 
-							$image = wp_get_attachment_image_src( get_post_thumbnail_id( $product->id ), 'single-post-thumbnail' );
-							$attachment_ids = $product->get_gallery_image_ids();
-							foreach($attachment_ids as $attachment_id) {
-							?>
+							<?php foreach($attachment_ids as $attachment_id) { ?>
 
 								<div class="gallery-slider__item swiper-slide">
 									<?php $image = wp_get_attachment_image_src( get_post_thumbnail_id( $product->id ), 'single-post-thumbnail' );?>                                    
@@ -57,6 +63,21 @@ if ( post_password_required() ) {
 									</a>
 								</div>
 								
+							<?php } ?>
+						</div>
+					</div>
+                </div>
+
+                <div class="product__tile">
+					<div class="gallery-tile-wrapper">
+						<div class="gallery-tile">
+							<?php foreach($attachment_ids as $attachment_id) { ?>
+								<div class="gallery-tile__img-wrapper">
+									<?php 
+									echo $attachment_id;
+									?>
+									<img width="1280" height="1920" src="<?= wp_get_attachment_image_url($attachment_id, 'Full'); ?>">
+								</div>
 							<?php } ?>
 						</div>
 					</div>
