@@ -156,6 +156,11 @@ function initGallerySwiper() {
                 spaceBetween: 10,
             },
         },
+        pagination: {
+            el: '.swiper-pagination',
+            type: 'bullets',
+            clickable: true,
+        },
     });
 
 }

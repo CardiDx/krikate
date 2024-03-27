@@ -63,7 +63,7 @@ function view_product_image($nt_image, $key)
     foreach ($nt_image[$key] as $nt_val) {
         $gallery .= '<div class="gallery-slider__item swiper-slide" data-product-color="' . $key . '"><a class="glightbox" href="' . wp_get_attachment_image_url($nt_val, 'full') . '">' . wp_get_attachment_image($nt_val, 'full') . '</a></div>';
     }
-    $gallery .= '</div></div>';
+    $gallery .= '</div><div class="swiper-pagination"></div></div>';
 
     return $gallery;
 }

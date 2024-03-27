@@ -5,7 +5,7 @@ $product_sku = $product->get_sku();
 
 <main>
     <section class="product section-offset">
-        <?php include('content-gift-card-product.php'); ?>        
+        <?php include('content-gift-card-product.php'); ?>     
         <?php //wc_get_template_part( 'content', 'single-product' ); ?>
         <?php //include('single-product/add-to-cart/pw-gift-card-before-add-to-cart-quantity.php'); ?>
         <?php //do_action( 'pw-gift-card-before-add-to-cart-quantity' ); ?>

@@ -65,6 +65,7 @@ if ( post_password_required() ) {
 								
 							<?php } ?>
 						</div>
+						<div class="swiper-pagination"></div>
 					</div>
                 </div>
 
@@ -128,6 +129,22 @@ if ( post_password_required() ) {
 					//do_action( 'woocommerce_after_single_product_summary' );
 					
 					?>
+        
+					<?php if ( !empty( get_the_content() ) ){ ?>
+						<div class="product__accordion accordion" style="margin-top: 10px;">
+							<div class="accordion__header accordion__header--active">
+								<div class="accordion__title">Описание</div>
+								<svg width="13" height="12" viewBox="0 0 13 12">
+									<use xlink:href="/wp-content/themes/krikate/assets/styles/svg-sprite.svg#show"></use>
+								</svg>
+							</div>
+							<div class="accordion__body accordion__body--active">
+								<div class="accordion__text">
+									<? the_content(); ?>
+								</div>
+							</div>
+						</div>
+					<?php } ?>   
 					
 				</div>
 
