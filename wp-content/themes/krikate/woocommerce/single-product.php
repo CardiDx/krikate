@@ -3,7 +3,7 @@
 <?
 global $product;
 
-if($product->slug == 'podarochnaja-karta') {
+if($product->slug == 'podarochnaja-karta' || $product->slug == 'fizicheskij-sertifikat' ) {
     // Товар подарочной карты
     include('gift-card-product.php');
     // include('single-product-variation.php');
