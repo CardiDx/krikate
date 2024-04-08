@@ -147,7 +147,8 @@ if ( $pw_gift_cards->use_default_currency_in_cart() ) {
         } else {
             ?>
             <div id="pwgc-form-to" class="pwgc-field-container">
-                <label for="pwgc-to" class="pwgc-label"><?php echo __( PWGC_TO_META_DISPLAY_NAME, 'pw-woocommerce-gift-cards' ); ?></label>
+                <!-- <label for="pwgc-to" class="pwgc-label"><?php //echo __( PWGC_TO_META_DISPLAY_NAME, 'pw-woocommerce-gift-cards' ); ?></label> -->
+                <label for="pwgc-to" class="pwgc-label">Для</label>
                 <?php
                     $placeholder = __( 'Enter an email address for each recipient', 'pw-woocommerce-gift-cards' );
                     $subtitle = __( 'Separate multiple email addresses with a comma.', 'pw-woocommerce-gift-cards' );

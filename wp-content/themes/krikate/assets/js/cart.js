@@ -792,6 +792,51 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+
+    var giftcard_add_cart_btn = document.querySelector('.single_add_to_cart_button');
+
+    if (giftcard_add_cart_btn) {
+        giftcard_add_cart_btn.addEventListener('click', function() {
+            
+            var addToCartPopup = document.getElementById("addToCart");
+            addToCartPopup.classList.add("popup--active");
+            document.body.classList.add("fixed");
+
+            var add_to_cart_block_before = document.querySelector('.add-to-cart-block_before');
+            var add_to_cart_block_after = document.querySelector('.add-to-cart-block_after');
+            add_to_cart_block_before.classList.add('disabled');
+            add_to_cart_block_after.classList.remove('disabled');
+
+            // var variationId = document.querySelector('.size-btn.size-btn--selected').getAttribute('data-variation');
+            // if (!add_cart_btn.disabled && variationId) {
+            //     jQuery.ajax({
+            //         type: 'POST',
+            //         url: '/wp-admin/admin-ajax.php',
+            //         data: {
+            //             action: 'add_to_cart',
+            //             variation_id: variationId,
+            //             quantity: 1,
+            //         },
+            //         success: function(response) {
+            //             var addToCartPopup = document.getElementById("addToCart");
+            //             addToCartPopup.classList.add("popup--active");
+            //             document.body.classList.add("fixed");
+
+
+            //             add_cart_btn.disabled = true;
+            //             var btnName = add_cart_btn.textContent;
+            //             add_cart_btn.innerHTML = response;
+            //             setTimeout(function() {
+            //                 add_cart_btn.disabled = false;
+            //                 add_cart_btn.innerHTML = btnName;
+            //             }, 2000);
+            //             updateCart();
+            //         }
+            //     });
+            // }
+        });
+    }
+
     const listing_add_cart_btn = document.querySelector('.listing_add_cart_btn');
     const add_to_cart_block_before = document.querySelector('.add-to-cart-block_before');
     const add_to_cart_block_after = document.querySelector('.add-to-cart-block_after');
