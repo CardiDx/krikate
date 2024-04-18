@@ -139,7 +139,25 @@ if ($product->is_type('variable')) {
 ?>
 
     <li class="catalog__list-item product-card" data-product-id="<?= get_the_ID() ?>">
+
         <div class="product-card__picture">
+
+            <?php
+            $markerPreorder = get_field('marker-preorder');
+            if( $markerPreorder ){ ?>
+                <div class="product-card__preorder-marker">ПРЕДЗАКАЗ</div>
+            <?php } ?>
+
+            <?php
+            $markerSoon = get_field('marker-soon');
+            if( $markerSoon ){ ?>
+                <div class="product-card-soon-bg">
+                    <div class="product-card-soon-wrapper">
+                        <div class="product-card-soon-text">Скоро</br>в продаже</div>
+                    </div>
+                </div>
+            <?php } ?>
+
             <?
             $marker = get_field('marker');
             if ($product->is_on_sale() || $marker !== NULL) {

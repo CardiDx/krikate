@@ -1635,14 +1635,18 @@ main {
     margin-bottom: 15px;
 }
 
-.h-dropdown__section-title:hover,
 .h-dropdown__section-link:hover {
     color: #d71379;
 }
 
 .h-dropdown__section-title {
+    color: #d71379;
     font-size: 20px;
     font-weight: 600;
+}
+
+.h-dropdown__section-title:hover {
+    color: #464646;
 }
 
 .h-dropdown__section-link {
@@ -3429,6 +3433,76 @@ main {
     text-transform: uppercase;
 }
 
+.product-card__preorder-marker {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 96px;
+    height: 28px;
+    background: rgba(255, 241, 248, 1);
+    z-index: 1;
+    
+    color: rgba(215, 19, 121, 1);
+    font-size: 16px;
+    line-height: 1;
+    font-weight: 400;
+}
+@media screen and (max-width: 540px) {
+    .product-card__preorder-marker {
+        top: 4px;
+        right: 4px;
+        font-size: 13px;
+        height: 23px;
+    }
+}
+
+.product-card-soon-bg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    background: rgba(255, 255, 255, 0.6);
+    z-index: 2;
+}
+
+.product-card-soon-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 90%;
+    max-width: 220px;
+    height: 100px;
+    padding: 16px;
+    background: #fff;
+    z-index: 3;
+}
+
+.product-card-soon-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgba(229, 229, 229, 1);
+
+    color: #000;
+    font-size: 24px;
+    line-height: 1;
+    font-weight: 400;
+    text-align: center;
+    text-transform: uppercase;
+}
+
 .product-card__add {
     position: absolute;
     right: 20px;
@@ -3643,6 +3717,7 @@ main {
 }
 
 .catalog__list-item {
+    position: relative;
     flex: 0 1 calc(25% - 8px);
 }
 
