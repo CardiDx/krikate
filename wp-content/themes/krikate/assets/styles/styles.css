@@ -4894,6 +4894,58 @@ main {
     margin-left: 6px;
 }
 
+.product-crosslinks-wrapper {
+    margin: 0 0 30px;
+}
+
+.product-crosslinks__title {
+    display: block;
+    margin: 0 0 14px;
+    
+    color: rgba(129, 129, 129, 1);
+    font-size: 15px;
+    line-height: 1;
+    font-weight: 400;
+}
+
+.product-crosslinks {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+.product-crosslink {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+
+    width: 110px;
+    height: 33px;
+    border: 1px solid rgba(215, 19, 121, 1);
+    
+    color: rgba(0, 0, 0, 1);
+    font-size: 17px;
+    line-height: 21px;
+    font-weight: 400;
+}
+a.product-crosslink,
+a.product-crosslink:hover,
+a.product-crosslink:active,
+a.product-crosslink:visited,
+a.product-crosslink:focus {
+    border: 1px solid rgba(229, 229, 229, 1);
+    cursor: pointer;
+    text-decoration: none;
+    outline: none;
+}
+a.product-crosslink:hover {
+    color: rgba(215, 19, 121, 1);
+    border: 1px solid rgba(215, 19, 121, 1);
+}
+
 .product__price {
     display: flex;
     align-items: baseline;

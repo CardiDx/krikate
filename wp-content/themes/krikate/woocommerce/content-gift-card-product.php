@@ -90,16 +90,35 @@ if ( post_password_required() ) {
                             <?php yoast_breadcrumb(); ?>
                         </ul>
                     </div>
+                    
+                    <div class="product-crosslinks-wrapper">
+                        <span class="product-crosslinks__title">Тип карты:</span>
+                        <div class="product-crosslinks">
+							<?php
+							// if($product->slug == 'podarochnaja-karta' || $product->slug == 'fizicheskij-sertifikat' ) {
+							if($product->slug == 'podarochnaja-karta' ) {
+							?>
+								<a href="/shop/sertifikat/fizicheskij-sertifikat/" class="product-crosslink">Физическая</a>
+								<span class="product-crosslink">Электронная</span>
+							<?php } ?>
+							<?php
+							if( $product->slug == 'fizicheskij-sertifikat' ) {
+							?>
+								<span class="product-crosslink">Физическая</span>
+								<a href="/shop/sertifikat/podarochnaja-karta/" class="product-crosslink">Электронная</a>
+							<?php } ?>
+                        </div>
+                    </div>
 
 					<div class="" style="font-family: 'Arsenal', sans-serif;"><!-- summary entry-summary -->
 						<?php
 						
-					/**
-					 * Hook: woocommerce_before_single_product.
-					 *
-					 * @hooked woocommerce_output_all_notices - 10
-					 */
-					do_action( 'woocommerce_before_single_product' );
+						/**
+						 * Hook: woocommerce_before_single_product.
+						 *
+						 * @hooked woocommerce_output_all_notices - 10
+						 */
+						do_action( 'woocommerce_before_single_product' );
 						/**
 						 * Hook: woocommerce_single_product_summary.
 						 *
