@@ -1052,12 +1052,21 @@ main {
 }
 
 .header__search {
+    width: 30px;
+    height: 30px;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .header__cart {
-    margin-left: 30px;
+    /* margin-left: 30px; */
+    margin-left: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
 }
 
 .header__dropdown {
@@ -1092,10 +1101,14 @@ main {
     .header__burger {
         position: relative;
         order: 1;
-        width: 19px;
+        /* width: 19px; */
+        width: 30px;
+        height: 30px;
         display: flex;
+        justify-content: center;
         align-items: center;
-        margin-right: 25px;
+        /* margin-right: 25px; */
+        margin-right: 12px;
     }
 
     .header__burger:before,
@@ -1662,8 +1675,10 @@ main {
 
 .h-cart__count {
     position: absolute;
-    top: -7px;
-    right: -9px;
+    /* top: -7px;
+    right: -9px; */
+    top: 0px;
+    right: -2px;
     width: 15px;
     height: 15px;
     border-radius: 50%;

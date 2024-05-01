@@ -109,6 +109,9 @@ if (get_field('sale_name', 'option') && !empty(get_field('sale_name', 'option'))
                     </button>
 
                     <div class="h-dropdown__col">
+                        <div class="h-dropdown__section">
+                            <a href="https://krikate.by/shop/" class="h-dropdown__section-title">Все товары</a>
+                        </div>
                         <?
                         $catalog_menu = get_field('catalog_menu', 'option');
                         foreach ($catalog_menu as $block) {

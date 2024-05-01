@@ -26,6 +26,13 @@ defined('ABSPATH') || exit;
 
 		<?php
 		$fields = $checkout->get_checkout_fields('billing');
+		$fields['billing_first_name']['label'] = "Имя красивого человека *";
+		$fields['billing_first_name']['placeholder'] = "Имя красивого человека *";
+		$fields['billing_last_name']['label'] = "Фамилия красивого человека *";
+		$fields['billing_last_name']['placeholder'] = "Фамилия красивого человека *";
+		// echo '<pre>';
+		// print_r($fields);
+		// echo '</pre>';
 
 		foreach ($fields as $key => $field) {
 			woocommerce_form_field($key, $field, $checkout->get_value($key));
