@@ -188,12 +188,16 @@ if ($product->is_type('variable')) {
             // }
             
             $variations_index = 0;
+            $colorGetParameter = '';
+            if(isset($colorName) && !empty($colorName)){ 
+                $colorGetParameter = '?color=' . $meta;
+            }
             if (count($product_image) !== 0) {
                 foreach ($product_image as $color => $images) {
                     if ($variations_index == 0) {
-                        echo '<a href="' . esc_url(get_permalink()) . '" class="product-card__picture-group product-card__picture-group--selected" data-color="' . $color . '">';
+                        echo '<a href="' . esc_url(get_permalink()) . $colorGetParameter . '" class="product-card__picture-group product-card__picture-group--selected" data-color="' . $color . '">';
                     } else {
-                        echo '<a href="' . esc_url(get_permalink()) . '" class="product-card__picture-group" data-color="' . $color . '">';
+                        echo '<a href="' . esc_url(get_permalink()) . $colorGetParameter . '" class="product-card__picture-group" data-color="' . $color . '">';
                     }
                     $image_index = 0;
                     if (isset($images[0]) && !empty($images[0])) {
@@ -218,7 +222,7 @@ if ($product->is_type('variable')) {
             } else {
                 $placeholder_img = wc_placeholder_img_src();
                 $product_image = wp_get_attachment_image_src(get_post_thumbnail_id($product->get_id()), 'single-post-thumbnail');
-                echo '<a href="' . esc_url(get_permalink()) . '" class="product-card__picture-group product-card__picture-group--selected">';
+                echo '<a href="' . esc_url(get_permalink()) . $colorGetParameter . '" class="product-card__picture-group product-card__picture-group--selected">';
                 if ($product_image) {
                     echo '<img src="' . esc_url($product_image[0]) . '" alt="' . esc_attr(get_the_title()) . '" />';
                     echo '<img src="' . esc_url($product_image[0]) . '" alt="' . esc_attr(get_the_title()) . '" />';
@@ -294,7 +298,7 @@ if ($product->is_type('variable')) {
         <?php } ?>
 
         <div class="product-card__desc">
-            <a href="<?= esc_url(get_permalink()); ?>" class="product-card__title"><?= $product_title ?><?php if(isset($colorName) && !empty($colorName)){ echo ' - ' . $colorName; } ?></a>
+            <a href="<?= esc_url(get_permalink()) . $colorGetParameter ?>" class="product-card__title"><?= $product_title ?><?php if(isset($colorName) && !empty($colorName)){ echo ' - ' . $colorName; } ?></a>
             <div class="product-card__wrap">
                 <?
                 view_product_price_listing($product_price);

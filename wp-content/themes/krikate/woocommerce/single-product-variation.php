@@ -59,9 +59,11 @@ foreach ($variations as $variation) {
     $nt_stock[$color][$size] = $variation_obj->get_stock_status();
 }
 
-
 $variation_key = null;
-if( isset($nt_color[0]) ){
+if( isset($_GET["color"]) && !empty($_GET["color"]) ){
+    $variation_key = $_GET["color"];
+}
+elseif( isset($nt_color[0]) ){
     $variation_key = $nt_color[0];
 }
 $variation_size = null;
