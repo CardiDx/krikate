@@ -1803,9 +1803,14 @@ main {
 }
 
 .h-mobile-menu__back {
+    position: relative;
+    left: -10px;
+    width: 30px;
+    height: 30px;
     display: flex;
+    justify-content: center;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .h-mobile-menu__section {
