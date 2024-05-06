@@ -1,7 +1,7 @@
 <section class="subscription section-offset">
     <div class="subscription__container container">
         <div class="subscription__col subscription__col--left">
-            <img src="/wp-content/uploads/podpiska-na-passylku.jpg" alt="">
+            <img src="<?= wp_get_attachment_image( get_field('cta-img', 'option'), 'full' ); ?>" alt="">
         </div>
         <div class="subscription__col subscription__col--right">
             <div class="subscription__content">
