@@ -189,7 +189,7 @@ if (get_field('sale_name', 'option') && !empty(get_field('sale_name', 'option'))
         <div class="header__modile-menu h-mobile-menu ps">
             <div class="h-mobile-menu__wrapper">
                 <div class="h-mobile-menu__col">
-                    <a href="/shop/" class="h-mobile-menu__link">Все товраы</a>
+                    <a href="/shop/" class="h-mobile-menu__link">Все товары</a>
                     <button class="h-mobile-menu__btn h-mobile-menu__link btn-reset" id="openCatalogNestedMenu">Каталог</button>
                     <a href="/category/sale/" class="h-mobile-menu__link"><?= $sale_name ?></a>
                     <a href="/category/gajdy/" class="h-mobile-menu__link">Гайды</a>

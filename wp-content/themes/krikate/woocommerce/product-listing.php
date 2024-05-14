@@ -12,7 +12,7 @@ function product_listing($category, $filter_sort, $filter_price)
         // 'orderby' => 'popularity',
         'orderby' => 'menu_order',
         'paged' => $paged, // Учитываем пагинацию
-        'posts_per_page' => '50',
+        'posts_per_page' => '10',
         'tax_query' => array(
             'relation' => 'OR',
         ),

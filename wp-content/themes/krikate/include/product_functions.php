@@ -195,9 +195,24 @@ add_action('wp_ajax_nopriv_my_ajax_view_product_tile', 'my_ajax_view_product_til
 
 
 
-function view_product_price_listing($product_price)
+function view_product_price_listing($product_price, $meta)
 {
     $i = 0;
+    // echo '<pre>';
+    // print_r($product_price);
+    // print_r($meta);
+    // echo '</pre>';
+
+    // $price = $product_price[$price][0]['price'];
+    if( isset($meta) && !empty($meta) ){
+        $variationPrice = array_values( $product_price[$meta] )[0]['price'];
+    }
+    
+    // echo '<pre>';
+    // print_r($meta);
+    // print_r($variationPrice);
+    // print_r($product_price);
+    // echo '</pre>';
 
     if (isset($_POST['product_color']) && isset($_POST['product_id'])) {
         $product_info = product_info($_POST['product_id']);
@@ -223,6 +238,9 @@ function view_product_price_listing($product_price)
     }
 
     $price_return = '';
+    if( isset($variationPrice) && !empty($variationPrice) ){
+        $price = $variationPrice;
+    }
     if (!empty($price) && $price < $regular_price) {
         $sale = 100 - ($price * 100 / $regular_price);
         $sale = round($sale, 0);

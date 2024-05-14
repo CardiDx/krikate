@@ -301,7 +301,11 @@ if ($product->is_type('variable')) {
             <a href="<?= esc_url(get_permalink()) . $colorGetParameter ?>" class="product-card__title"><?= $product_title ?><?php if(isset($colorName) && !empty($colorName)){ echo ' - ' . $colorName; } ?></a>
             <div class="product-card__wrap">
                 <?
-                view_product_price_listing($product_price);
+    // echo '<pre>';
+    // print_r($product_price);
+    // print_r($meta);
+    // echo '</pre>';
+                view_product_price_listing($product_price, $meta);
                 ?>
             </div>
         </div>
