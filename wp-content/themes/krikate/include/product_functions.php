@@ -195,13 +195,26 @@ add_action('wp_ajax_nopriv_my_ajax_view_product_tile', 'my_ajax_view_product_til
 
 
 
-function view_product_price_listing($product_price, $meta)
+// function view_product_price_listing($product_price, $meta)
+function view_product_price_listing($product_price)
 {
     $i = 0;
     // echo '<pre>';
     // print_r($product_price);
-    // print_r($meta);
     // echo '</pre>';
+
+    // variable for variation color
+    $meta = '';
+
+    // if we have color argument inside
+    if( isset($product_price['meta']) && !empty($product_price['meta']) ){
+        $meta = $product_price['meta'];
+    }
+
+    // if we have product price inside of array
+    if( isset($product_price['product_price']) && !empty($product_price['product_price']) ){
+        $product_price = $product_price['product_price'];
+    }
 
     // $price = $product_price[$price][0]['price'];
     if( isset($meta) && !empty($meta) ){

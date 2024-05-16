@@ -305,7 +305,12 @@ if ($product->is_type('variable')) {
     // print_r($product_price);
     // print_r($meta);
     // echo '</pre>';
-                view_product_price_listing($product_price, $meta);
+                $priceListingParams = array(
+                    'product_price' => $product_price,
+                    'meta' => $meta
+                );
+                // view_product_price_listing($product_price, $meta);
+                view_product_price_listing($priceListingParams);
                 ?>
             </div>
         </div>
