@@ -19,6 +19,7 @@ $template_uri = esc_url(get_template_directory_uri());
 					<a href="/vozvrat/" class="f-menu__link">Возврат</a>
 					<a href="/uhod/" class="f-menu__link">Памятка по уходу</a>
 					<a href="/oformlenie-zakaza/" class="f-menu__link">Оформление заказа</a>
+					<a href="/bonusnaja-sistema-lojalnosti/" class="f-menu__link">Система лояльности</a>
 				</div>
 				<div class="f-menu__col">
 					<a href="/shop/" class="f-menu__link">Каталог</a>
@@ -95,9 +96,6 @@ $template_uri = esc_url(get_template_directory_uri());
 					</li>
 				</ul>
 			</div>
-		</div>
-		<div class="footer__wrapper" style="margin-top: 20px; justify-content: center;">
-			<a href="https://razam.bz/">Разработка сайта Razam</a>
 		</div>
 	</div>
 </footer>
