@@ -2288,7 +2288,8 @@ main {
 
 @media screen and (max-width: 540px) {
     .collection__list {
-        gap: 25px 0;
+        /* gap: 25px 0; */
+        gap: 25px 10px;
     }
 
     .collection__list-item {
@@ -3754,11 +3755,13 @@ main {
 
 @media screen and (max-width: 540px) {
     .catalog__list {
-        gap: 25px 0;
+        /* gap: 25px 0; */
+        gap: 25px 10px;
     }
 
     .catalog__list-item {
-        flex: 0 1 100%;
+        /* flex: 0 1 100%; */
+        flex: 0 1 calc(50% - 5px);
     }
 }
 
