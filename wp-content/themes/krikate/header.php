@@ -24,7 +24,7 @@ if (get_field('sale_name', 'option') && !empty(get_field('sale_name', 'option'))
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/perfect-scrollbar@1.5.5/css/perfect-scrollbar.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
-    <link rel="stylesheet" href="<? echo $template_uri; ?>/assets/styles/styles.css">
+    <link rel="stylesheet" href="<? echo $template_uri; ?>/assets/styles/styles.css?ver.1.0.1">
     <link rel="stylesheet" href="<? echo esc_url(get_template_directory_uri()); ?>/assets/styles/animation.css">
 	
 	
@@ -181,6 +181,7 @@ if (get_field('sale_name', 'option') && !empty(get_field('sale_name', 'option'))
                             <a href="/oplata-i-dostavka/" class="h-dropdown__section-link">Оплата и доставка</a>
                             <a href="/uhod/" class="h-dropdown__section-link">Памятка по уходу</a>
                             <a href="/vozvrat/" class="h-dropdown__section-link">Возврат</a>
+                            <a href="/bonusnaja-sistema-lojalnosti/" class="h-dropdown__section-link">Бонусная система</a>
                         </div>
                     </div>
                 </div>
@@ -189,7 +190,6 @@ if (get_field('sale_name', 'option') && !empty(get_field('sale_name', 'option'))
         <div class="header__modile-menu h-mobile-menu ps">
             <div class="h-mobile-menu__wrapper">
                 <div class="h-mobile-menu__col">
-                    <a href="/shop/" class="h-mobile-menu__link">Все товары</a>
                     <button class="h-mobile-menu__btn h-mobile-menu__link btn-reset" id="openCatalogNestedMenu">Каталог</button>
                     <a href="/category/sale/" class="h-mobile-menu__link"><?= $sale_name ?></a>
                     <a href="/category/gajdy/" class="h-mobile-menu__link">Гайды</a>
@@ -210,6 +210,9 @@ if (get_field('sale_name', 'option') && !empty(get_field('sale_name', 'option'))
                                 <use xlink:href="<? echo $template_uri; ?>/assets/styles/svg-sprite.svg#backarrow"></use>
                             </svg>
                         </button>
+                        <div class="h-mobile-menu__section">
+                            <a href="/shop/" class="h-mobile-menu__section-title">ВСЕ ТОВАРЫ</a>
+                        </div>
                         <?
                         foreach ($catalog_menu as $block) {
                             echo '<div class="h-mobile-menu__section">';
@@ -256,9 +259,9 @@ if (get_field('sale_name', 'option') && !empty(get_field('sale_name', 'option'))
                             </svg>
                         </button>
                         <div class="h-mobile-menu__section">
-                            <div class="h-mobile-menu__section">
-                                <a href="/oformlenie-zakaza/" class="h-mobile-menu__section-title">Оформление заказа</a>
-                            </div>
+                            <a href="/oformlenie-zakaza/" class="h-mobile-menu__section-title">Оформление заказа</a>
+                        </div>
+                        <div class="h-mobile-menu__section">
                             <a href="/oplata-i-dostavka/" class="h-mobile-menu__section-title">Оплата и доставка</a>
                         </div>
                         <div class="h-mobile-menu__section">
@@ -266,6 +269,10 @@ if (get_field('sale_name', 'option') && !empty(get_field('sale_name', 'option'))
                         </div>
                         <div class="h-mobile-menu__section">
                             <a href="/vozvrat/" class="h-mobile-menu__section-title">Возврат</a>
+                        </div>
+                        <div class="h-mobile-menu__section">
+                            
+                            <a href="/bonusnaja-sistema-lojalnosti/" class="h-mobile-menu__section-title">Бонусная система</a>
                         </div>
 
 
