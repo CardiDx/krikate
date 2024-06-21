@@ -108,6 +108,154 @@ function view_product_price($nt_price, $key, $size)
 
 
 
+// Функция получения названия магазина по его айдишнику из майсклада
+function getShopName( $stockArray, $shopID ){
+    $shopName = '';
+    foreach( array_values($stockArray)[0] as $shop ){
+        if( $shop['store_uuid'] == $shopID ){
+            $shopName = $shop['store_name'];
+            if( $shopName == 'Склад интернет-магазина и производство' ){
+                $shopName = 'Склад интернет-магазина';
+            }
+            break;
+        }
+    }
+
+    return $shopName;
+}
+
+// Функция получения количества вариации по его айдишнику и айдишнику магазина
+function getProductInShopQuantity( $stockArray, $shopID, $variationID ){
+    $variationQuantity = '';
+
+    foreach( $stockArray[$variationID] as $shop ){
+        if( $shop['store_uuid'] == $shopID ){
+            $variationQuantity = $shop['quantity'];
+            break;
+        }
+    }
+
+    return $variationQuantity;
+}
+
+// Таблица наличия в магазинах
+
+function view_product_stock_table( $product_id, $color )
+{
+    $stock_table = 'Ой, не получилось загрузить таблицу :(';
+
+    if (class_exists('\Wdc\Addition\Stores\AdditionController')){
+        
+        // получаем массив наличия товара в магазинах
+        $settings = get_option('wms_settings_stock');
+        $AdditionController = new Wdc\Addition\Stores\AdditionController($settings);
+        $stockArray = $AdditionController->getStocksToStoresWithVariations($product_id);
+        
+        // формируем массив айдишников магазинов
+        $shopIDs = [];
+        foreach( array_values($stockArray)[0] as $key => $value ){
+            array_push($shopIDs, $value['store_uuid']);
+        }
+
+        // формируем массив размеров
+        $produstSizes = [];
+        $product = wc_get_product($product_id);
+        $productVariations = $product->get_available_variations();
+        foreach( $productVariations as $productVariation ){
+            if( $productVariation['attributes']['attribute_pa_color'] == $color ){
+                array_push( $produstSizes, [
+                    0 => $productVariation['variation_id'], 
+                    1 => $productVariation['attributes']['attribute_pa_size'], 
+                ] );
+            }            
+        }
+
+        // Город и номер телефона по айдишнику магазина
+        $shopsInfo = [
+            '6198bc39-8d21-11ee-0a80-0b2d007aee5d' => [
+                'city' => 'Минск',
+                'address' => 'TЦ Galleria 5 этаж (пространство Trend park)',
+                'phone' => '+375 (33) 992-41-61',
+            ],
+            '6fa6aa66-8d21-11ee-0a80-04b4007d980c' => [
+                'city' => 'Гродно',
+                'address' => 'ул. Советская 31, 3 этаж',
+                'phone' => '',
+            ],
+            '7b3c020f-8d21-11ee-0a80-07f9007d7ebe' => [
+                'city' => 'Минск',
+                'address' => 'ТЦ Dana mall 1 этаж (пространство We are)',
+                'phone' => '+375 (33) 917-41-61',
+            ],
+            'cb2ffc11-8d08-11ee-0a80-09970074e796' => [
+                'city' => 'Гродно',
+                'address' => 'ТЦ Triniti 2 этаж (пространство We are)',
+                'phone' => '+375 (33) 918-41-61',
+            ],
+        ];
+
+        // формируем таблицу наличия в магазинах
+        $stock_table = '';
+        $stock_table .= '<table>';
+            $stock_table .= '<thead>';
+                $stock_table .= '<tr>';
+                    $stock_table .= '<td>';
+                    $stock_table .= '</td>';
+                    
+                    // рисуем размеры
+                    foreach( $produstSizes as $produstSize ){
+                    $stock_table .= '<td>';
+                        $stock_table .= $produstSize[1];
+                    $stock_table .= '</td>';
+                    }
+
+                $stock_table .= '</tr>';
+            $stock_table .= '</thead>';
+            $stock_table .= '<tbody>';
+                
+                // рисуем строки с количеством
+                foreach( $shopIDs as $shopID ){
+                    $stock_table .= '<tr>';
+                        $stock_table .= '<td>';
+                            $stock_table .= '<span class="stock-table__city">' . $shopsInfo[$shopID]['city'] . '</span>';
+                            // $stock_table .= $shopID;
+                            // $stock_table .= getShopName( $stockArray, $shopID );
+                            $stock_table .= $shopsInfo[$shopID]['address'];
+                            $stock_table .= '<a href="tel:"' . $shopsInfo[$shopID]['phone'] . ' class="stock-table__phone">' . $shopsInfo[$shopID]['phone'] . '</a>';
+                        $stock_table .= '</td>';
+                        foreach( $produstSizes as $produstSize ){
+                        $stock_table .= '<td>';
+                            $stock_table .= getProductInShopQuantity( $stockArray, $shopID, $produstSize[0]);
+                        $stock_table .= '</td>';
+                        }
+                    $stock_table .= '</tr>';
+                }
+
+            $stock_table .= '</tbody>';
+        $stock_table .= '</table>';
+
+        // $stock_table = $stockArray;
+        // $stock_table = $shopIDs;
+        // $stock_table = $produstSizes;
+        // $stock_table = $productVariations;
+    }
+
+    return $stock_table;
+}
+
+function my_ajax_view_product_stock_table()
+{
+    $product_id = isset($_POST['product_id']) ? $_POST['product_id'] : '';
+    $color = isset($_POST['key']) ? $_POST['key'] : '';
+
+    $table = view_product_stock_table( $product_id, $color );
+    echo json_encode($table);
+    wp_die();
+}
+
+add_action('wp_ajax_my_ajax_view_product_stock_table', 'my_ajax_view_product_stock_table');
+add_action('wp_ajax_nopriv_my_ajax_view_product_stock_table', 'my_ajax_view_product_stock_table');
+
 
 
 // Вывод цветов

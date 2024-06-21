@@ -225,6 +225,26 @@ if( isset($nt_size[$variation_key][0]) ){
                             </div>
                         </div>
                     <?php } ?>
+                    <div class="product__accordion accordion">
+                        <div class="accordion__header">
+                            <div class="accordion__title">Наличие в магазинах</div>
+                            <svg width="13" height="12" viewBox="0 0 13 12">
+                                <use xlink:href="/wp-content/themes/krikate/assets/styles/svg-sprite.svg#show"></use>
+                            </svg>
+                        </div>
+                        <div class="accordion__body">
+                            <div class="accordion__text">
+                                <div class="stock-table">
+                                    <?php
+                                    // echo '<pre>';
+                                    // var_dump( view_product_stock_table( $product->id, $variation_key ) );
+                                    // echo '</pre>';
+                                    echo view_product_stock_table( $product->id, $variation_key )
+                                    ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
         var sizeBlock = document.querySelectorAll('.size-btn');
         var galleryBlock = document.querySelector('.product__gallery');
         var tileBlock = document.querySelector('.product__tile');
+        var stockTableBlock = document.querySelector('.stock-table');
 
         var oneClickBuy = document.querySelector('.popup-form__product');
 
@@ -36,6 +37,29 @@ document.addEventListener('DOMContentLoaded', function() {
                 var loadingAnimation = '<div class="product-loader"><div class="three-body"><div class="three-body__dot"></div><div class="three-body__dot"></div><div class="three-body__dot"></div></div></div>';
                 galleryBlock.innerHTML = loadingAnimation;
                 tileBlock.innerHTML = loadingAnimation;
+
+                console.log('productId: ' + productId);
+                console.log('key: ' + key);
+                
+                jQuery.ajax({
+                    type: 'POST',
+                    url: '/wp-admin/admin-ajax.php',
+                    data: {
+                        action: 'my_ajax_view_product_stock_table',
+                        key: key,
+                        product_id: productId
+                    },
+                    success: function(response) {
+                        var result = JSON.parse(response);
+                        if (response) {
+                            stockTableBlock.innerHTML = result;
+                        }
+                        console.log(result);
+                    },
+                    error: function(xhr, status, error) {
+                        console.log(error);
+                    }
+                });
 
 
                 jQuery.ajax({
@@ -94,6 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         console.log(error);
                     }
                 });
+
             });
         });
 

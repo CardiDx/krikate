@@ -5843,3 +5843,78 @@ div.pwgc-field-container {
     outline: none;
     padding: 14px 18px;
 }
+
+.stock-table {
+    width: 100%;
+
+    color: rgb(33, 33, 33);
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 19px;
+}
+
+.stock-table table {
+    width: 100%;
+}
+
+.stock-table table,
+.stock-table table th,
+.stock-table table td {
+    border: none;
+    border-collapse: collapse;
+  }
+
+.stock-table thead {
+    background: rgb(240, 240, 240);
+}
+
+.stock-table tbody {}
+
+.stock-table tr {
+    border-bottom: 1px solid #ebebeb;
+}
+
+.stock-table td {
+    /* display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center; */
+    
+    padding: 12px 0;
+    /* border-bottom: 1px solid #ebebeb; */
+}
+
+.stock-table td:nth-child(n+1) {
+    text-align: center;
+}
+
+.stock-table td:first-child {
+    text-align: left;
+}
+
+.stock-table__city {
+    display: block;
+
+
+    color: rgb(170, 170, 170);
+    font-size: 13px;
+    line-height: 19px;
+}
+
+.stock-table__phone,
+.stock-table__phone:hover,
+.stock-table__phone:active,
+.stock-table__phone:visited,
+.stock-table__phone:focus {
+    display: block;
+    margin: 4px 0 0;
+
+    color: rgb(33, 33, 33);
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 19px;
+
+    cursor: pointer;
+    text-decoration: none;
+    outline: none;
+}
