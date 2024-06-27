@@ -175,7 +175,7 @@ function view_product_stock_table( $product_id, $color )
             '6198bc39-8d21-11ee-0a80-0b2d007aee5d' => [
                 'city' => 'Минск',
                 'address' => 'TЦ Galleria 5 этаж (пространство Trend park)',
-                'phone' => '+375 (33) 992-41-61',
+                'phone' => '+375 (33) 917-41-61',
             ],
             '6fa6aa66-8d21-11ee-0a80-04b4007d980c' => [
                 'city' => 'Гродно',
@@ -185,7 +185,7 @@ function view_product_stock_table( $product_id, $color )
             '7b3c020f-8d21-11ee-0a80-07f9007d7ebe' => [
                 'city' => 'Минск',
                 'address' => 'ТЦ Dana mall 1 этаж (пространство We are)',
-                'phone' => '+375 (33) 917-41-61',
+                'phone' => '+375 (33) 992-41-61',
             ],
             'cb2ffc11-8d08-11ee-0a80-09970074e796' => [
                 'city' => 'Гродно',
