@@ -9,6 +9,7 @@ $template_uri = esc_url(get_template_directory_uri());
 $slider = get_field('slider');
 $advantage = get_field('advantage');
 $products = get_field('products');
+$products2 = get_field('products2');
 $category_products = get_field('category_products');
 ?>
 
@@ -131,6 +132,78 @@ $category_products = get_field('category_products');
                                 wc_get_template_part('content', 'product');   
                                 // инкрементим счетчик выведенных товаров
                                 $productsCounter++;
+                            }
+
+
+                        }
+                        echo '</ul>';
+                    }
+                    wp_reset_postdata();
+                }
+                ?>
+            </div>
+        </section>
+    <? endif; ?>
+
+    <? if (isset($products2) && !empty($products2)) : ?>
+        <section class="collection section-offset">
+            <div class="collection__container container">
+                <h1 class="collection__title"><?= $products2['headline'] ?></h1>
+                <?
+                if (!empty($products2['list'])) {
+                    $args = array(
+                        'post_type' => 'product',
+                        // 'posts_per_page' => 4,
+                        'post__in' => $products2['list'],
+                        'orderby' => 'menu_order',
+                    );
+                    $products2_list = new WP_Query($args);
+                    if ($products2_list->have_posts()) {
+                        echo '<ul class="collection__list list-reset">';
+
+                        // счетчик выведенных товаров
+                        $productsCounter2 = 0;
+
+                        while ($products2_list->have_posts()) {
+                            $products2_list->the_post();
+
+                            // прерываем вывод постов если было выведено уже 4
+                            if( $products2Counter >= 4 ) {
+                                break;
+                            }
+
+                            $product2_id = get_the_ID();
+                            $product2 = wc_get_product($product2_id);
+                            $usedColors2 = array();
+
+                            // перебираем все вариации товара
+                            foreach ( $product2->get_available_variations() as $key => $variation ) {
+                                // echo '<pre>';
+                                // print_r($variation);
+                                // echo '</pre>';
+
+                                $variationColor = $variation['attributes']['attribute_pa_color'];
+                                
+                                if (in_array($variationColor, $usedColors2)) {
+                                    // мы уже записали в массив этот цвет
+                                    continue;
+                                } else {
+                                    // этого цвета в массиве не было
+                                    if( $variation['is_in_stock'] || $variation['max_qty'] || $variation['backorders_allowed'] ) {
+                                        // вывод карточки ОДНОЙ вариации
+                                        // woocommerce_get_template( 'content-product.php', array('variationID' => $variation['variation_id']) );
+                                        // добавляем цвет в массив, если он есть в наличии или предзаказе
+                                        array_push($usedColors2, $variationColor);
+                                    }
+                                }
+                                
+                            }
+
+                            if( !empty($usedColors2) ){
+                                // вывод картоки с точками
+                                wc_get_template_part('content', 'product');   
+                                // инкрементим счетчик выведенных товаров
+                                $productsCounter2++;
                             }
 
 
