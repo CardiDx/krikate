@@ -180,7 +180,7 @@ function view_product_stock_table( $product_id, $color )
             '6fa6aa66-8d21-11ee-0a80-04b4007d980c' => [
                 'city' => 'Гродно',
                 'address' => 'ул. Советская 31, 3 этаж',
-                'phone' => '',
+                'phone' => '+375 (33) 914-41-61',
             ],
             '7b3c020f-8d21-11ee-0a80-07f9007d7ebe' => [
                 'city' => 'Минск',
