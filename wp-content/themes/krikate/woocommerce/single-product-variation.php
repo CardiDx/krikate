@@ -236,9 +236,11 @@ if( isset($nt_size[$variation_key][0]) ){
                             <div class="accordion__text">
                                 <div class="stock-table">
                                     <?php
-                                    // echo '<pre>';
-                                    // var_dump( view_product_stock_table( $product->id, $variation_key ) );
-                                    // echo '</pre>';
+                                    // if($product->id == 14869) {
+                                    //     echo '<pre>';
+                                    //     var_dump( view_product_stock_table( $product->id, $variation_key ) );
+                                    //     echo '</pre>';
+                                    // }
                                     echo view_product_stock_table( $product->id, $variation_key )
                                     ?>
                                 </div>
