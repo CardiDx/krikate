@@ -56,15 +56,15 @@ if (get_field('sale_name', 'option') && !empty(get_field('sale_name', 'option'))
                             Каталог
                         </button>
                     </li>
-                    <li class="h-menu__item">
-                        <a href="/category/night-party-sale/" class="h-menu__link">NIGHT PARTY SALE</a>
-                    </li>
-                    <!-- <li class="h-menu__item">
+                    <!--<li class="h-menu__item">-->
+                    <!--    <a href="/category/night-party-sale/" class="h-menu__link">NIGHT PARTY SALE</a>-->
+                    <!--</li>-->
+                     <li class="h-menu__item">
                         <a href="/category/sale/" class="h-menu__link"><?= $sale_name ?></a>
-                    </li> -->
-                    <li class="h-menu__item">
-                        <a href="/category/gajdy/" class="h-menu__link">Гайды</a>
                     </li>
+<!--                     <li class="h-menu__item">
+                        <a href="/category/gajdy/" class="h-menu__link">Гайды</a>
+                    </li> -->
                     <li class="h-menu__item">
                         <a href="/shops/" class="h-menu__link">Магазины</a>
                     </li>
@@ -118,8 +118,11 @@ if (get_field('sale_name', 'option') && !empty(get_field('sale_name', 'option'))
                         <div class="h-dropdown__section">
                             <a href="https://krikate.by/shop/" class="h-dropdown__section-title">ВСЕ ТОВАРЫ</a>
                         </div>
-                        <div class="h-dropdown__section">
-                            <a href="/category/night-party-sale/" class="h-dropdown__section-title">NIGHT PARTY SALE</a>
+                        <!--<div class="h-dropdown__section">-->
+                        <!--    <a href="/category/night-party-sale/" class="h-dropdown__section-title">NIGHT PARTY SALE</a>-->
+                        <!--</div>-->
+                          <div class="h-dropdown__section">
+                            <a href="/category/sale/" class="h-dropdown__section-title">SALE</a>
                         </div>
                         <?
                         $catalog_menu = get_field('catalog_menu', 'option');
@@ -197,9 +200,9 @@ if (get_field('sale_name', 'option') && !empty(get_field('sale_name', 'option'))
             <div class="h-mobile-menu__wrapper">
                 <div class="h-mobile-menu__col">
                     <button class="h-mobile-menu__btn h-mobile-menu__link btn-reset" id="openCatalogNestedMenu">Каталог</button>
-                    <a href="/category/night-party-sale/" class="h-mobile-menu__link">NIGHT PARTY SALE</a>
-                    <!-- <a href="/category/sale/" class="h-mobile-menu__link"><?= $sale_name ?></a> -->
-                    <a href="/category/gajdy/" class="h-mobile-menu__link">Гайды</a>
+                    <!--<a href="/category/night-party-sale/" class="h-mobile-menu__link">NIGHT PARTY SALE</a>-->
+                     <a href="/category/sale/" class="h-mobile-menu__link"><?= $sale_name ?></a> 
+                    <!-- <a href="/category/gajdy/" class="h-mobile-menu__link">Гайды</a> -->
                     <a href="/shops/" class="h-mobile-menu__link">Магазины</a>
                     <a href="/lookbook/" class="h-mobile-menu__link">Lookbook</a>
                     <button class="h-mobile-menu__btn h-mobile-menu__link btn-reset" id="openBuyersNestedMenu">Покупателям</button>

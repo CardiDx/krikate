@@ -170,44 +170,6 @@ function view_product_stock_table( $product_id, $color )
             }            
         }
 
-
-        // [0]=>
-        // array(3) {
-        //   ["store_name"]=>
-        //   string(24) "Магазин Dana Mall"
-        //   ["store_uuid"]=>
-        //   string(36) "6198bc39-8d21-11ee-0a80-0b2d007aee5d"
-        //   ["quantity"]=>
-        //   string(1) "0"
-        // }
-        // [1]=>
-        // array(3) {
-        //   ["store_name"]=>
-        //   string(72) "Склад интернет-магазина и производство"
-        //   ["store_uuid"]=>
-        //   string(36) "6fa6aa66-8d21-11ee-0a80-04b4007d980c"
-        //   ["quantity"]=>
-        //   string(1) "0"
-        // }
-        // [2]=>
-        // array(3) {
-        //   ["store_name"]=>
-        //   string(29) "Магазин Galleria Minsk"
-        //   ["store_uuid"]=>
-        //   string(36) "7b3c020f-8d21-11ee-0a80-07f9007d7ebe"
-        //   ["quantity"]=>
-        //   string(1) "1"
-        // }
-        // [3]=>
-        // array(3) {
-        //   ["store_name"]=>
-        //   string(20) "Корнер TRINITI"
-        //   ["store_uuid"]=>
-        //   string(36) "cb2ffc11-8d08-11ee-0a80-09970074e796"
-        //   ["quantity"]=>
-        //   string(1) "1"
-        // }
-
         // Город и номер телефона по айдишнику магазина
         $shopsInfo = [
             '7b3c020f-8d21-11ee-0a80-07f9007d7ebe' => [
@@ -229,6 +191,11 @@ function view_product_stock_table( $product_id, $color )
                 'city' => 'Гродно',
                 'address' => 'ТЦ Triniti 2 этаж (пространство We are)',
                 'phone' => '+375 (33) 918-41-61',
+            ],
+            'a64b3050-9103-11ef-0a80-19c000053ca7' => [
+                'city' => 'Минск',
+                'address' => 'ТРЦ Palazzo 2 этаж (пространство Fабрика) ',
+                'phone' => '+375 (33) 916-41-61',
             ],
         ];
 
@@ -253,6 +220,9 @@ function view_product_stock_table( $product_id, $color )
                 
                 // рисуем строки с количеством
                 foreach( $shopIDs as $shopID ){
+                    // echo '<pre>';
+                    // print_r($shopID);
+                    // echo '</pre>';
                     $stock_table .= '<tr>';
                         $stock_table .= '<td>';
                             $stock_table .= '<span class="stock-table__city">' . $shopsInfo[$shopID]['city'] . '</span>';

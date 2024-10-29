@@ -25,6 +25,7 @@ $template_uri = esc_url(get_template_directory_uri());
 					<a href="/shop/" class="f-menu__link">Каталог</a>
 					<a href="/category/sale/" class="f-menu__link">SALE</a>
 					<a href="/shops/" class="f-menu__link">Магазины</a>
+					<a href="/check-giftcard-balance/" class="f-menu__link">Баланс сертификата</a>
 				</div>
 				<div class="f-menu__col">
 					<a href="/about/" class="f-menu__link">О бренде</a>
