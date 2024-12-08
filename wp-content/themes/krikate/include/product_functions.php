@@ -194,8 +194,13 @@ function view_product_stock_table( $product_id, $color )
             ],
             'a64b3050-9103-11ef-0a80-19c000053ca7' => [
                 'city' => 'Минск',
-                'address' => 'ТРЦ Palazzo 2 этаж (пространство Fабрика) ',
+                'address' => 'ТРЦ Palazzo 2 этаж (пространство Fабрика)',
                 'phone' => '+375 (33) 916-41-61',
+            ],
+            'b075b833-b3ac-11ef-0a80-0f0300093f50' => [
+                'city' => 'Гродно',
+                'address' => 'ул. Большая Троицкая 25',
+                'phone' => '',
             ],
         ];
 
@@ -220,6 +225,9 @@ function view_product_stock_table( $product_id, $color )
                 
                 // рисуем строки с количеством
                 foreach( $shopIDs as $shopID ){
+                    if( $shopID == '6fa6aa66-8d21-11ee-0a80-04b4007d980c' ) {
+                        continue;
+                    }
                     // echo '<pre>';
                     // print_r($shopID);
                     // echo '</pre>';
