@@ -200,7 +200,7 @@ function view_product_stock_table( $product_id, $color )
             'b075b833-b3ac-11ef-0a80-0f0300093f50' => [
                 'city' => 'Гродно',
                 'address' => 'ул. Большая Троицкая 25',
-                'phone' => '',
+                'phone' => '+375 (33) 914-41-61',
             ],
         ];
 
