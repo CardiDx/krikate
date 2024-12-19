@@ -1,7 +1,8 @@
 <?php
+
 // function customize_variation_price_display($variation_data, $product, $variation) {
-//     $start_date = strtotime('2023-11-24 20:00:00'); // 24 ноября 20:00
-//     $end_date = strtotime('2023-11-26 23:59:59'); // 26 ноября 23:59
+//     $start_date = strtotime('2024-11-29 10:59:00'); // 29 november 11:00
+//     $end_date = strtotime('2024-12-01 23:59:00'); // 01 december 23:59
 //     $current_time = current_time('timestamp');
 //     if ($current_time < $start_date || $current_time > $end_date) {
 //         $variation_data['display_price'] = $variation_data['display_regular_price'];
@@ -9,6 +10,8 @@
 //     return $variation_data;
 // }
 // add_filter('woocommerce_available_variation', 'customize_variation_price_display', 10, 3);
+
+
 
 function send_admin_new_order_email( $order_id ) {
     $order = wc_get_order( $order_id );
@@ -45,6 +48,10 @@ add_action('init', function () {
         global $wp_admin_bar;
         $wp_admin_bar->remove_menu('comments');
     });
+    //отключил логи в дб из-за частоты большой
+    add_filter( 'action_scheduler_store_logs_in_db', '__return_false' );
+    add_filter( 'action_scheduler_store_actions_in_db', '__return_false' );
+
 });
 
 function register_sidebar_menu()

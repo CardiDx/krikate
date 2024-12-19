@@ -159,12 +159,37 @@ if ($product->is_type('variable')) {
             <?php } ?>
 
             <?
+      
+            $start_date = strtotime('2024-11-29 10:59:00'); // 29 november 11:00
+            $end_date = strtotime('2024-12-01 23:59:00'); // 01 december 23:59
+            $current_time = current_time('timestamp');
+            
+            $is_sale_time = false;
+            if( $current_time >= $start_date && $current_time <= $end_date ){
+                $is_sale_time = true;
+            }
+            
+            // echo '<pre>';
+            // echo '$start_date = ' . $start_date;
+            // echo '$end_date = ' . $end_date;
+            // echo '$current_time = ' . $current_time;
+            // echo '$is_sale_time = ' . $is_sale_time;
+            // echo '</pre>';
+ 
+            // начало маркера sale
             $marker = get_field('marker');
             if ($product->is_on_sale() || $marker !== NULL) {
                 echo '<div class="product-card__sale">';
+                //old
                 if ($product->is_on_sale()) {
                     echo '<div class="product-card__sale-item">SALE</div>';
                 }
+                
+                //new
+                // if ($product->is_on_sale() && $is_sale_time) {
+                // echo '<div class="product-card__sale-item">SALE</div>';
+                // }
+              
                 if ($marker !== NULL) {
                     foreach ($marker as $el) {
                         echo '<div class="product-card__sale-item">' . $el . '</div>';
@@ -172,6 +197,7 @@ if ($product->is_type('variable')) {
                 }
                 echo '</div>';
             }
+            // конец маркера sale
 
             // if(isset($variationID) && !empty($variationID)) {
             //     // if we have to print only 1 picture by variation id
