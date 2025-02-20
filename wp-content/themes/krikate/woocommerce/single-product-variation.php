@@ -221,6 +221,7 @@ if( isset($nt_size[$variation_key][0]) ){
                             <div class="accordion__body accordion__body--active">
                                 <div class="accordion__text">
                                     <? the_content(); ?>
+                                    <p style="margin: 20px 0 0; font-family: Arsenal; font-weight: 400; font-size: 14px; line-height: 110%; color: #818181;">Производитель ООО "КРИКЕЙТ" страна Республика Беларусь</p>
                                 </div>
                             </div>
                         </div>
