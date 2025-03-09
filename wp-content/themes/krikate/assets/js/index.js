@@ -125,6 +125,28 @@
 
     // initGallerySwiper();
 
+    // Cookies
+    const cookiesPermission = localStorage.getItem('cookiesPermission');
+    const cookieBar = document.querySelector(".cookiebar-wrapper");
+    const acceptCookiesButton = document.querySelector(".accept_cookies_btn");
+    const rejectCookiesButton = document.querySelector(".reject_cookies_btn");
+
+    if( cookiesPermission == null ) {
+        cookieBar.classList.add("--show");
+    }
+    // alert( cookiesPermission );
+
+    acceptCookiesButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        localStorage.setItem('cookiesPermission', 'accepted');
+        cookieBar.classList.remove("--show");
+    });
+    rejectCookiesButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        localStorage.setItem('cookiesPermission', 'rejected');
+        cookieBar.classList.remove("--show");
+    });
+
     const psSearchResults = new PerfectScrollbar(".search__results");
     if (document.querySelector(".filter__body")) {
         const psFilterBody = new PerfectScrollbar(".filter__body");

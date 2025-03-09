@@ -2,6 +2,18 @@
 $template_uri = esc_url(get_template_directory_uri());
 ?>
 
+<div class="cookiebar-wrapper">
+	<div class="container">
+		<div class="cookiebar">
+			<span class="cookiebar__text">Наш сайт использует файлы cookie, чтобы улучшить работу сайта, повысить его эффективность и удобство. Продолжая использовать сайт krikate.by, вы соглашаетесь на <a href="/privacy-policy/">использование файлов cookie</a>.</span>
+			<div class="cookiebar-btns">
+				<a href="#" class="cookiebar__btn accept_cookies_btn">Принять</a>
+				<a href="#" class="cookiebar__btn --bordered reject_cookies_btn">Отклонить</a>
+			</div>
+		</div>
+	</div>
+</div>
+
 <footer class="footer">
 	<div class="footer__container container">
 		<div class="footer__wrapper">
@@ -200,10 +212,12 @@ $template_uri = esc_url(get_template_directory_uri());
 <script src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/perfect-scrollbar@1.5.5/dist/perfect-scrollbar.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/25.2.1/build/js/intlTelInput.min.js" integrity="sha512-IkaM8IicdlJR0eLhPoAHBeDXxQ8QTjVfo7O9hwowr8gTmxZOlV0Z51HFYIDmftcLmdejUlGam6uYVU3k7xP/4A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/25.2.1/build/js/intlTelInput.min.js" integrity="sha512-IkaM8IicdlJR0eLhPoAHBeDXxQ8QTjVfo7O9hwowr8gTmxZOlV0Z51HFYIDmftcLmdejUlGam6uYVU3k7xP/4A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.3.0/js/glightbox.min.js" integrity="sha512-RBWI5Qf647bcVhqbEnRoL4KuUT+Liz+oG5jtF+HP05Oa5088M9G0GxG0uoHR9cyq35VbjahcI+Hd1xwY8E1/Kg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.6/perfect-scrollbar.min.js" integrity="sha512-gcLXgodlQJWRXhAyvb5ULNlBAcvjuufaOBRggyLCtCqez+9jW7MxP3Is/9serId1YmNZ0Lx1ewh9z2xBwwZeKg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script defer src="<?= $template_uri ?>/assets/js/intl-tel-input-utilits.18.2.1.js"></script>
+<script defer src="<?= $template_uri ?>/assets/js/intl-tel-input.18.2.1.js"></script>
 <script defer src="<?= $template_uri ?>/assets/js/index.js"></script>
 <script defer src="<?= $template_uri ?>/assets/js/cart.js"></script>
 <script defer src="<?= $template_uri ?>/assets/js/filter.js"></script>

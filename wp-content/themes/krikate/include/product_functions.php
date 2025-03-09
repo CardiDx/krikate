@@ -194,7 +194,7 @@ function view_product_stock_table( $product_id, $color )
             ],
             'a64b3050-9103-11ef-0a80-19c000053ca7' => [
                 'city' => 'Минск',
-                'address' => 'ТРЦ Palazzo 2 этаж (пространство Fабрика)',
+                'address' => 'ТЦ «GREEN CITY» 1 этаж',
                 'phone' => '+375 (33) 916-41-61',
             ],
             'b075b833-b3ac-11ef-0a80-0f0300093f50' => [
