@@ -207,15 +207,17 @@ $template_uri = esc_url(get_template_directory_uri());
 </div>
 
 <script src="<?= $template_uri ?>/assets/js/inputmask.min.js"></script>
-<script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js"></script>
-<!-- <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/perfect-scrollbar@1.5.5/dist/perfect-scrollbar.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script> -->
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/25.2.1/build/js/intlTelInput.min.js" integrity="sha512-IkaM8IicdlJR0eLhPoAHBeDXxQ8QTjVfo7O9hwowr8gTmxZOlV0Z51HFYIDmftcLmdejUlGam6uYVU3k7xP/4A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.3.0/js/glightbox.min.js" integrity="sha512-RBWI5Qf647bcVhqbEnRoL4KuUT+Liz+oG5jtF+HP05Oa5088M9G0GxG0uoHR9cyq35VbjahcI+Hd1xwY8E1/Kg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.6/perfect-scrollbar.min.js" integrity="sha512-gcLXgodlQJWRXhAyvb5ULNlBAcvjuufaOBRggyLCtCqez+9jW7MxP3Is/9serId1YmNZ0Lx1ewh9z2xBwwZeKg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<!-- <script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.3.0/js/glightbox.min.js" integrity="sha512-RBWI5Qf647bcVhqbEnRoL4KuUT+Liz+oG5jtF+HP05Oa5088M9G0GxG0uoHR9cyq35VbjahcI+Hd1xwY8E1/Kg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.6/perfect-scrollbar.min.js" integrity="sha512-gcLXgodlQJWRXhAyvb5ULNlBAcvjuufaOBRggyLCtCqez+9jW7MxP3Is/9serId1YmNZ0Lx1ewh9z2xBwwZeKg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+<!-- <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script> -->
+
+<script defer src="<?= $template_uri ?>/assets/js/just-validate.production.min.js"></script>
+<script defer src="<?= $template_uri ?>/assets/js/glightbox.min.js"></script>
+<script defer src="<?= $template_uri ?>/assets/js/perfect-scrollbar.min.js"></script>
+<script defer src="<?= $template_uri ?>/assets/js/swiper-bundle.min.js"></script>
+
 <script defer src="<?= $template_uri ?>/assets/js/intl-tel-input-utilits.18.2.1.js"></script>
 <script defer src="<?= $template_uri ?>/assets/js/intl-tel-input.18.2.1.js"></script>
 <script defer src="<?= $template_uri ?>/assets/js/index.js"></script>
