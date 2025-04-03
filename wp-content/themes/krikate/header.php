@@ -15,6 +15,21 @@ if (get_field('sale_name', 'option') && !empty(get_field('sale_name', 'option'))
     <meta charset="<?php bloginfo('charset'); ?>" />
     <meta name="viewport" content="width=device-width" />
     <?php wp_head(); ?>
+
+    <!-- meta tags for product -->
+    <?php
+    if ( is_product() ) {
+        global $product;
+        if( $product->id ) {
+            echo '<meta property="product:retailer_item_id" content="' . $product->id . '" />';
+        }
+        if( $product->price ) {
+            echo '<meta property="product:price:amount" content="' . $product->price . '" />';
+            echo '<meta property="product:price:currency" content="BYN" />';
+        }
+    }
+    ?>
+
     <!--  START ALL CSS  -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
