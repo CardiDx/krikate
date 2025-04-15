@@ -20,12 +20,37 @@ if (get_field('sale_name', 'option') && !empty(get_field('sale_name', 'option'))
     <?php
     if ( is_product() ) {
         global $product;
+        $variations = $product->get_available_variations();
         if( $product->id ) {
             echo '<meta property="product:retailer_item_id" content="' . $product->id . '" />';
         }
         if( $product->price ) {
             echo '<meta property="product:price:amount" content="' . $product->price . '" />';
             echo '<meta property="product:price:currency" content="BYN" />';
+        }
+
+        $isInStock = false;
+        foreach ($variations as $variation) {
+            // echo '<pre>';
+            // echo 'is_in_stock: ';
+            // print_r($variation['is_in_stock']);
+            // echo 'max_qty: ';
+            // print_r($variation['max_qty']);
+            // echo 'backorders_allowed: ';
+            // print_r($variation['backorders_allowed']);
+            // echo '</pre>';
+
+            // if($variation['is_in_stock'] || $variation['max_qty'] || $variation['backorders_allowed']) {}
+            if($variation['is_in_stock'] || $variation['max_qty']) {
+                $isInStock = true;
+                break;
+            }
+        }
+        if( $product->price ) {
+            echo '<meta property="product:availability" content="instock">';
+        }
+        else {
+            echo '<meta property="product:availability" content="out of stock">';
         }
     }
     ?>
