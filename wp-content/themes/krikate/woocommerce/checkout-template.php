@@ -37,7 +37,12 @@ if (isset($_GET['key']) && !empty($_GET['key']) && strpos($current_url, '/order-
                         echo '<p>Дата заказа: ' . wc_format_datetime($order->get_date_created()) . '</p>';
                         echo '</div>';
                         ?>
-                        <div class="middle__desc">После оформления заказа наш менеджер свяжется с вами для уточнения деталей</div>
+                        <!--<div class="middle__desc">После оформления заказа наш менеджер свяжется с вами для уточнения деталей</div>-->
+                         <div class="middle__desc">
+                            <p>Дорогая, рады твоим покупкам на нашем сайте</p>
+                            <p>Если вдруг у тебя возникли вопросы, пожалуйста, свяжись с нашим отделом заботы по номеру телефона: +375 (33) 914-41-61.</p>
+                            <p>Спасибо за твоё доверие!</p>
+                        </div>
                     <? else : ?>
                         <h1 class="middle__title">Заказ не найден</h1>
                     <? endif; ?>
@@ -80,6 +85,7 @@ if (isset($_GET['key']) && !empty($_GET['key']) && strpos($current_url, '/order-
                                 </svg>
                             </div>
                             <?= do_shortcode('[woocommerce_checkout]'); ?>
+                            <div class="button secondary-button button__reload-basket">Обновить корзину</div>
                         </div>
 
                     <? else : ?>
